@@ -373,7 +373,7 @@ export class SharedDataService {
     if (p.stock_quantity == null || p.stock_quantity > quantity) quantityCheck = true;
     else if (p.stock_quantity < quantity) {
       quantityCheck = false;
-      this.showAlert("Product Quantity is Limited!");
+      this.showAlert("La quantité de produit est limitée!");
     }
 
     if (onlyOneAllowed && quantityCheck) return true;

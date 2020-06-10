@@ -5,7 +5,7 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title class="ion-no-padding">{{'Create an Account'|translate}}</ion-title>
+    <ion-title class="ion-no-padding" style="font-size: 18px;">Créer un compte chez Dollars Bijoux</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,31 +18,31 @@
   <form #loginForm="ngForm" class="form" (ngSubmit)="createAccount()">
 
     <ion-item>
-      <ion-label position="floating">{{'First Name'|translate}}</ion-label>
+      <ion-label position="floating"> Prénom</ion-label>
       <ion-input type="text" name="customers_firstname" [(ngModel)]="formData.first_name" required>
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">{{'Last Name'|translate}}</ion-label>
+      <ion-label position="floating">Nom</ion-label>
       <ion-input type="text" name="customers_lastname" [(ngModel)]="formData.last_name" required>
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">{{'Username'|translate}}</ion-label>
+      <ion-label position="floating">Identifiant</ion-label>
       <ion-input type="text" name="username" [(ngModel)]="formData.username" required>
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">{{'Email'|translate}}</ion-label>
+      <ion-label position="floating">Email</ion-label>
       <ion-input type="email" email name="email" [(ngModel)]="formData.email" required>
       </ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">{{'Password'|translate}}</ion-label>
+      <ion-label position="floating">Mot de passe</ion-label>
       <ion-input type="password" name="c_d" [(ngModel)]="formData.password" required>
       </ion-input>
     </ion-item>
@@ -53,14 +53,15 @@
       </ion-label>
     </ion-item>
 
-    <p>{{"Creating an account means you’re okay with our"|translate}}
-      <a (click)="openTermServicesPage()">{{'Term and Services'|translate}}</a>,
-      <a (click)="openPrivacyPolicyPage()">{{'Privacy Policy'|translate}}</a> {{'and'|translate}}
-      <a (click)="openRefundPolicyPage()">{{'Refund Policy'|translate}}</a>
+    <p>La création d'un compte signifie que vous êtes d'accord avec nos
+      <a (click)="openTermServicesPage()">Termes et Services</a>,
+      <a (click)="openPrivacyPolicyPage()">
+        Politique de confidentialité</a> et
+      <a (click)="openRefundPolicyPage()">Politique de remboursement</a>
     </p>
 
     <ion-button disabled="true" expand="full" color="secondary" type="submit" [disabled]="!loginForm.form.valid">
-      {{'Register'|translate}}
+      S'inscrire
     </ion-button>
   </form>
 </ion-content>

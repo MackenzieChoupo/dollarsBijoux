@@ -3,7 +3,7 @@
     <ion-menu-button slot="start">
       <ion-icon name="menu"></ion-icon>
     </ion-menu-button>
-    <ion-title> {{'Notifications'| translate }} </ion-title>
+    <ion-title> Notifications</ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="refreshPage()">
         <ion-icon name="refresh"></ion-icon>
@@ -22,19 +22,19 @@
 
     <ion-row class="ion-no-padding">
       <ion-col size="12" class="ion-no-padding">
-        <h4>{{'Your Scratch Cards Coupon List is Empty'|translate}}</h4>
+        <h4>Votre liste de coupons à gratter est vide</h4>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-no-padding">
       <ion-col size="12" class="ion-no-padding">
-        <h5>{{'continue shopping'|translate}}</h5>
+        <h5>Continuer les achats!</h5>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-no-padding">
       <ion-col size="12" class="ion-no-padding">
-        <ion-button color="secondary" (click)="openShop()">{{'Explore'|translate}}</ion-button>
+        <ion-button color="secondary" (click)="openShop()">Explorer</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -43,13 +43,13 @@
       <ion-item *ngIf="n.type=='1'">
         <ion-icon name="notifications" slot="start"></ion-icon>
         <ion-button *ngIf="n.is_view == 0" ion-button color="secondary" (click)="openScratchCard(n)">
-          {{'Open Scratch Card' |translate}}
+          Ouvrir la carte à gratter
         </ion-button>
         <ion-label>
           <h2 *ngIf="n.is_view == 1">{{'Code'|translate}}: {{n.code}}</h2>
           <h3 *ngIf="n.is_view == 1">{{n.message}}</h3>
         </ion-label>
-        <ion-note slot="end" class="note">{{'Expiry Date'|translate}} <small>{{n.expire_date}}</small></ion-note>
+        <ion-note slot="end" class="note">Date d'expiration<small>{{n.expire_date}}</small></ion-note>
       </ion-item>
     </div>
   </ion-list>

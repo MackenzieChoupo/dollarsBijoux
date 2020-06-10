@@ -115,9 +115,9 @@ export class LoginPage implements OnInit {
             console.log("successfully login ");
             this.createAccount(res.authResponse.accessToken, 'fb');
           })
-          .catch(e => this.shared.showAlert('Error logging into Facebook' + JSON.stringify(e)));
+          .catch(e => this.shared.showAlert('Erreur lors de la connexion à Facebook' + JSON.stringify(e)));
       }
-    }).catch(e => this.shared.showAlert('Error Check Login Status Facebook' + JSON.stringify(e)));
+    }).catch(e => this.shared.showAlert('Vérification de l\'état de connexion' + JSON.stringify(e)));
   }
 
   // googleLogin() {
