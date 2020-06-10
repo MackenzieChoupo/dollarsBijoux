@@ -1,6 +1,6 @@
 // Project Name: IonicEcommerce
 // Project URI: http://ionicecommerce.com
-// Author: VectorCoder Team
+// Author: Morel Choupo
 // Author URI: http://vectorcoder.com/
 
 import { ModalController, NavController } from '@ionic/angular';
@@ -590,15 +590,13 @@ export class SharedDataService {
     this.shippingCountryName = "";
     this.shippingStateName = "";
   }
-  toast(msg) {
-    this.translateString(msg).then(async (res: string) => {
-      const toast = await this.toastCtrl.create({
-        message: res,
-        duration: 2500,
-        position: 'bottom'
-      });
-      toast.present();
+ async toast(msg) {
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: 2500,
+      position: 'bottom'
     });
+    toast.present();
   }
   uploadDataToServer(data) {
     this.loading.show();

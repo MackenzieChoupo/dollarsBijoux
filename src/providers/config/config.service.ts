@@ -18,7 +18,7 @@ if (localStorage.languageCode == undefined) {
   localStorage.languageDirection = "ltr"; //default language direction of app
   localStorage.currency = "&#36;";  //default currecny html code to show in app.
   // Please visit this link to get your html code  https://html-css-js.com/html/character-codes/currency/
-  localStorage.currencyCode = "USD";  //default currency code
+  localStorage.currencyCode = "XAF";  //default currency code
   localStorage.currencyPos = "left";  //default currency position
   localStorage.decimals = 2;  //default currecny decimal
 }
