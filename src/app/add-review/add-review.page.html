@@ -5,17 +5,17 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{'Write a review'|translate}}</ion-title>
+    <ion-title>laisser un commentaire</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-no-padding">
-  <h4>{{'Comment about this product'|translate}}</h4>
+  <h4>Commenter ce produit</h4>
 
   <ion-grid class="ion-no-padding">
     <ion-row class="ion-no-padding">
       <ion-col size="3.6" class="ion-no-padding">
-        <h5>{{'Your Rating:'|translate}}</h5>
+        <h5>Votre note</h5>
       </ion-col>
       <ion-col size="1" *ngFor="let s of ratingStars" class="ion-align-self-end">
         <ion-icon [name]="s.fill" (click)="selectRating(s.value)"></ion-icon>
@@ -25,7 +25,7 @@
 
   <form>
     <ion-item>
-      <ion-input type="text" placeholder="{{'Name'|translate}}" name="name" [(ngModel)]="formData.name" required>
+      <ion-input type="text" placeholder="{{'Nom'|translate}}" name="name" [(ngModel)]="formData.name" required>
       </ion-input>
     </ion-item>
 
@@ -35,7 +35,7 @@
     </ion-item>
 
     <ion-item lines="none">
-      <ion-textarea rows="17" placeholder="{{'Enter a description'|translate}}" name="desc"
+      <ion-textarea rows="17" placeholder="{{'Entrer une description'|translate}}" name="desc"
         [(ngModel)]="formData.description" required></ion-textarea>
     </ion-item>
   </form>
@@ -44,6 +44,6 @@
 </ion-content>
 <ion-footer>
   <ion-button expand="full" color="secondary" (click)="addComment()" [disabled]="disbaleButton()">
-    {{ 'Post Comment' | translate }}
+    Poster un commentaire
   </ion-button>
 </ion-footer>

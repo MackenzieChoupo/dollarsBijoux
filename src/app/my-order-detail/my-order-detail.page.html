@@ -41,7 +41,7 @@
 
   <ion-card>
     <ion-card-header>
-      <h4><b>{{'Shipping Total'|translate}}</b></h4>
+      <h4><b>Frais de livraison</b></h4>
     </ion-card-header>
     <ion-card-content>
       {{addCurrecny(order.shipping_total)}}
@@ -91,7 +91,7 @@
     <ion-card-content>
       <ion-row>
         <ion-col size="6">
-          {{'Shipping'|translate}} {{'Tax'|translate}}
+          Tax d'envoi
         </ion-col>
         <ion-col class="ion-text-right" col-6>
           {{addCurrecny(order.shipping_tax) }}
@@ -99,7 +99,7 @@
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          {{'Shipping'|translate}}
+          livraison
         </ion-col>
         <ion-col class="ion-text-right" size="6">
           {{addCurrecny(order.shipping_total)}}
@@ -107,7 +107,7 @@
       </ion-row>
       <ion-row>
         <ion-col size="6">
-          {{'Tax'|translate}}
+          Taxe
         </ion-col>
         <ion-col class="ion-text-right" size="6">
           {{addCurrecny(order.discount_total)}}
@@ -158,7 +158,7 @@
 
   <ion-card *ngIf="getTrackingId()!=''">
     <ion-card-header>
-      {{'Track Order'|translate}}
+      Suivi de commande
     </ion-card-header>
     <ion-card-content>
       <ion-row>
@@ -166,7 +166,7 @@
           {{getTrackingId()}}
         </ion-col>
         <ion-col col-6 class="ion-text-right">
-          <ion-button color="secondary" icon-end (click)="openTrackingPage()">{{'Track'|translate}}
+          <ion-button color="secondary" icon-end (click)="openTrackingPage()">Suivi
             <ion-icon name="locate"></ion-icon>
           </ion-button>
         </ion-col>

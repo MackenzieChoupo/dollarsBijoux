@@ -2,7 +2,7 @@
 <widget id="com.morelchoupo.dollarsbijoux" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Dollars Bijoux</name>
     <description>Boutique Dollars Bijoux</description>
-    <author email="infos@dollarsbijoux.com" href="http://dollarsbijoux.com/">Themes Coder</author>
+    <author email="infos@dollarsbijoux.com" href="http://dollarsbijoux.com/">Morel Choupo</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

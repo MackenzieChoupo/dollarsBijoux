@@ -1,8 +1,4 @@
 
-// Project Name: Ionic woocommerce
-// Project URI: http://themes-coder.com/products/ionic-woocommerce/
-// Author: themes-coder Team
-// Author URI: http://themes-coder.com/
 
 import { Injectable, ApplicationRef } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,8 +15,8 @@ if (localStorage.languageCode == undefined) {
   localStorage.currency = "&#36;";  //default currecny html code to show in app.
   // Please visit this link to get your html code  https://html-css-js.com/html/character-codes/currency/
   localStorage.currencyCode = "USD";  //default currency code
-  localStorage.currencyPos = "left";  //default currency position
-  localStorage.decimals = 2;  //default currecny decimal
+  localStorage.currencyPos = "right";  //default currency position
+  localStorage.decimals = 0;  //default currecny decimal
 }
 
 @Injectable()

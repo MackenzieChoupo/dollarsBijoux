@@ -142,7 +142,7 @@
         <ion-row class="qty-box-total">
           <ion-col class="left" size="12">
             <ion-row>
-              <ion-col class="ion-text-left" class="qty-name" size="12">{{'Quantity' |translate}}</ion-col>
+              <ion-col class="ion-text-left" class="qty-name" size="12">Quantité</ion-col>
               <ion-col class="qty-vlue ion-text-right" size="3">
                 <ion-button class="button" size="small" color="secondary" (click)="qunatityGroupMinus(g)">
                   <ion-icon name="remove"></ion-icon>
@@ -158,7 +158,7 @@
               </ion-col>
             </ion-row>
             <ion-row>
-              <ion-col class="ttl-name" size="12">{{'Total' |translate}}&nbsp;{{'Price' |translate}}</ion-col>
+              <ion-col class="ttl-name" size="12">{{'Total' |translate}}&nbsp;Prix</ion-col>
               <ion-col class="ttl-vlue" size="12">{{ g.quantity*g.price|curency}}</ion-col>
             </ion-row>
           </ion-col>
@@ -196,7 +196,7 @@
           <ion-select [(ngModel)]="att.value" (ionChange)="fillAttributes(att.value,att.name,ind)"
             okText="{{'Ok'|translate}}" cancelText="{{'Cancel'|translate}}">
             <span *ngFor=" let val of att.options; let i = index">
-              <ion-select-option value="choose" selected *ngIf="i==0">{{'Select'|translate}}
+              <ion-select-option value="choose" selected *ngIf="i==0">{{'Selectionnez'|translate}}
               </ion-select-option>
               <ion-select-option [value]="val" *ngIf="availableOption(att.name,val)">{{val}}</ion-select-option>
             </span>
@@ -241,9 +241,9 @@
   <ion-grid class="product-detail-content bing-fo" *ngIf="config.showVendorInfo && product.store">
     <ion-row>
       <ion-col size="12">
-        <h3>{{'Seller Information'|translate}}<br><small>{{'Sold by'|translate}}{{' '+product.store.name}}</small></h3>
+        <h3>Information du vendeur<br><small> Vendu par{{' '+product.store.name}}</small></h3>
         <ion-button expand="block" color="light" (click)="openStore(product.store)">
-          {{'View Store'|translate}}</ion-button>
+          Voir magasin</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -259,10 +259,11 @@
     <ion-row *ngIf="!loaderWcVendorInfo">
       <ion-col size="12">
         <h3>
-          {{'Information sur le vendeur'|translate}}<br><small>{{'Sold by'|translate}}{{' '+wcVendorInfo.meta.pv_shop_name}}</small>
+          {{'Information sur le vendeur'|translate}}<br><small>
+            Vendu par{{' '+wcVendorInfo.meta.pv_shop_name}}</small>
         </h3>
         <ion-button expand="block" color="light" (click)="openStore(wcVendorInfo)">
-          {{'View Store'|translate}}</ion-button>
+          Voir magasin</ion-button>
       </ion-col>
     </ion-row>
 
@@ -272,11 +273,9 @@
     <ion-row class="top-icon-header heading">
       <ion-button fill="clear">
         <ion-icon slot="start" name="md-list"></ion-icon>
-        {{'Product Description'|translate}}
+        Description du produit
       </ion-button>
     </ion-row>
-
-
 
     <ion-row>
       <ion-col size="12" style="padding:0 10px">
@@ -308,7 +307,7 @@
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="selectAttributes.length!=0">
-    <ion-fab-button color="danger" (click)="resetAttributes()">{{'Clear'|translate}}
+    <ion-fab-button color="danger" (click)="resetAttributes()">{{'Effacer'|translate}}
     </ion-fab-button>
   </ion-fab>
 

@@ -50,7 +50,7 @@ export class MyOrdersPage implements OnInit {
       this.applicationRef.tick();
     }, err => {
       this.loading.hide();
-      this.shared.showAlert("Server Error while Loading Orders");
+      this.shared.showAlert("Erreur du serveur lors du chargement des commandes");
     });
   };
   showOrderDetail(order) {
@@ -76,6 +76,10 @@ export class MyOrdersPage implements OnInit {
   ngOnInit() {
     this.httpRunning = true;
     this.getOrders();
+  }
+
+  openProductsPage() {
+    this.navCtrl.navigateForward("/products/0/0/newest");
   }
 
 }

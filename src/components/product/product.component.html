@@ -43,7 +43,7 @@
             *ngIf="config.cartButton==1 && p.stock_status=='instock' && p.type!='simple'">{{'Détails'|translate}}
           </ion-button>
           <ion-button color="secondary" color="danger" *ngIf="config.cartButton==1 && p.stock_status!='instock'">
-            {{'OUT OF STOCK'|translate}}
+            EN RUPTURE DE STOCK
           </ion-button>
         </ion-row>
       </ion-grid>
@@ -69,7 +69,7 @@
               *ngIf="config.cartButton==1 && p.stock_status=='instock' && p.type!='simple'" item-start>
               {{'Détails'|translate}}</ion-button>
             <ion-button color="danger" *ngIf="config.cartButton==1 && p.stock_status!='instock'" item-start>
-              {{'OUT OF STOCK'|translate}}</ion-button>
+              EN RUPTURE DE STOCK</ion-button>
           </ion-col>
         </ion-row>
         <ion-icon id="list-heart-icon" *ngIf="isLiked==0" (click)="clickWishList()" name="heart-empty"></ion-icon>

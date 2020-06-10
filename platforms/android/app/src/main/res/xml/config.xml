@@ -77,7 +77,7 @@
     </feature>
     <name>Dollars Bijoux</name>
     <description>Boutique Dollars Bijoux</description>
-    <author email="infos@dollarsbijoux.com" href="http://dollarsbijoux.com/">Themes Coder</author>
+    <author email="infos@dollarsbijoux.com" href="http://dollarsbijoux.com/">Morel Choupo</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
