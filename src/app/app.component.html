@@ -6,7 +6,7 @@
           <ion-title>{{ 'Menu' | translate:appPages }}</ion-title>
           <ion-buttons slot="end">
             <ion-button fill="clear" (click)="openCurrencyPage()" *ngIf="config.multiCurrency">
-             <!-- <ion-icon slot="icon-only" name="logo-usd"></ion-icon>--><ion-title>{{ 'Devise' | translate }}</ion-title>
+             <!-- <ion-icon slot="icon-only" name="logo-usd"></ion-icon>--><ion-title>Devise</ion-title>
             </ion-button>
             <ion-button fill="clear" (click)="openLanguagePage()" *ngIf="config.multiLanguage">
               <ion-icon name="globe"></ion-icon>
@@ -25,8 +25,8 @@
                 <img src="assets/avatar.png" />
               </ion-avatar>
               <ion-label class="ion-padding">
-                <h2>{{ 'Connexion et inscription' | translate:appPages }}</h2>
-                <p>{{ 'Veuillez vous connecter ou créer un compte gratuitement' | translate:appPages }}</p>
+                <h2 style="font-size: 12px; text-align: center;">Connectez-vous ou créez un compte <br> gratuitement </h2>
+              <!-- <p>{{ 'connecter vous ou créer un compte gratuitement' | translate:appPages }}</p>--> 
               </ion-label>
             </ion-item>
           </ion-item>
@@ -89,14 +89,40 @@
                     </ion-row>
                   </ion-grid>
                 </ion-item>
-              </app-menu-component>
+              </app-menu-component>  
             </ion-grid>
           </ion-item>
+         <ion-item class="item-inner-list" lines="full" 
+          (click)="changeCountry()">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-align-self-center" size="2">
+                <ion-icon name="globe"></ion-icon>
+              </ion-col>
+              <ion-col class="ion-align-self-center">
+                <p>Choisir un autre pays</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+          <ion-item class="item-inner-list" lines="full" 
+          (click)="exitApp()">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-align-self-center" size="2">
+                <ion-icon name="exit"></ion-icon>
+              </ion-col>
+              <ion-col class="ion-align-self-center">
+                <p>Sortir de l'application</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
         </ion-list>
-        <p class="primary-light-Color" #my id="my">Just to get color. Donot remove this.
+     <!--  <p class="primary-light-Color" #my id="my">Just to get color. Donot remove this.
         </p>
         <p class="primary-Color" #primary id="primary">Just to get color. Donot remove this.
-        </p>
+        </p>--> 
       </ion-content>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

@@ -292,43 +292,43 @@ export class CouponService {
     //checking coupon expire or not
     if (expDate <= todayDate && coupon.date_expires != null) {
 
-      this.shared.showAlert("Sorry Coupon is Expired");
+      this.shared.showAlert("Désolé, le coupon est expiré");
       return false;
     }
     // if cart amount is lower than the coupon minimum limit
     else if (this.lineItemTotalService(lineItems) <= coupon.minimum_amount) {
 
-      this.shared.showAlert("Sorry your Cart total is low than coupon min limit!");
+      this.shared.showAlert("Désolé, le total de votre panier est inférieur à la limite minimale du coupon!");
       return false;
     }
     // if cart amount is higher than the coupon minimum limit
     else if (this.lineItemTotalService(lineItems) >= coupon.maximum_amount && coupon.maximum_amount != 0) {
-      this.shared.showAlert("Sorry your Cart total is Higher than coupon Max limit!");
+      this.shared.showAlert("Désolé, le total de votre panier est supérieur à la limite maximale du coupon!");
       return false;
     }
     else if (this.emailCheckService(coupon.email_restrictions) == true) {
-      this.shared.showAlert("Sorry, this coupon is not valid for this email address!");
+      this.shared.showAlert("Désolé, ce coupon n'est pas valide pour cette adresse e-mail!");
       return false;
     }
     //============================================================== further checking
     else if (this.checkOnSaleService(lineItems, coupon) == true) {
-      this.shared.showAlert("Sorry, this coupon is not valid for sale items.");
+      this.shared.showAlert("Désolé, ce coupon n'est pas valable pour les articles en vente.");
       return false;
     }
     else if (this.checkAlreadyAppliedService(coupon, couponLines) == true) {
-      this.shared.showAlert("Coupon code already applied!");
+      this.shared.showAlert("Code promo déjà appliqué!");
       return false;
     }
     else if (couponLines != 0 && couponLines[0].individual_use == true) {
-      this.shared.showAlert('Sorry Individual Use Coupon is already applied any other coupon cannot be applied with it !');
+      this.shared.showAlert('Désolé, le coupon d\'utilisation individuelle est déjà appliqué, aucun autre coupon ne peut être appliqué avec lui!');
       return false;
     }
     else if (this.checkUserUsageService(coupon) == true) {
-      this.shared.showAlert('Coupon usage limit has been reached.');
+      this.shared.showAlert('La limite d\'utilisation des coupons a été atteinte.');
       return false;
     }
     else if (this.checkCouponApplyOrNotOnCurrentProducts(coupon, lineItems) == false) {
-      this.shared.showAlert('Sorry Coupon Cannot be Applied on these Products!');
+      this.shared.showAlert('Désolé, le coupon ne peut pas être appliqué sur ces produits!');
       return false;
     }
     // else if (checkNoItemInCartService(lineItems, coupon) == false) {

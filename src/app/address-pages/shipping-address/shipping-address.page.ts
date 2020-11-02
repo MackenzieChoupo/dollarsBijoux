@@ -28,32 +28,39 @@ export class ShippingAddressPage implements OnInit {
 
     if (this.shared.customerData.id != null) {
       this.shared.shipping = this.shared.customerData.shipping;
-      this.shared.shippingCountryName = this.location.getCountryName(this.shared.customerData.shipping.country);
-      this.shared.shippingStateName = this.location.getStateName(this.shared.customerData.shipping.country, this.shared.customerData.shipping.state);
+      this.shared.billing = this.shared.customerData.shipping;
+      this.shared.billing.email = this.shared.customerData.email;
+      //this.shared.shippingCountryName = this.location.getCountryName(this.shared.customerData.shipping.country);
+      //this.shared.shippingStateName = this.location.getStateName(this.shared.customerData.shipping.country, this.shared.customerData.shipping.state);
+      this.shared.billingCountryName = this.location.getCountryName(this.shared.customerData.shipping.country);
+      this.shared.billingStateName = this.location.getStateName(this.shared.customerData.shipping.country, this.shared.customerData.shipping.state);
+      this.shared.billingStateName = this.shared.shippingStateName;
+      this.shared.billingCountryName = this.shared.shippingCountryName;
     }
     if (this.shared.shippingCountryName == "" || this.shared.shippingCountryName == null) this.shared.shippingStateName = "";
   }
   disableButton() {
 
     if (
-      this.shared.shipping.first_name == ""
-      || this.shared.shipping.last_name == ""
-      || this.shared.shipping.city == ""
-      || this.shared.shipping.postcode == ""
-      || this.shared.shipping.state == ""
+      this.shared.billing.first_name == ""
+      || this.shared.billing.last_name == ""
+      || this.shared.billing.city == ""
+      || this.shared.billing.email == ""
       || this.shared.shipping.country == ""
-      || this.shared.shipping.address_1 == ""
-      || this.shared.shipping.state == null
-      || this.shared.shipping.city == null
-      || this.shared.shipping.postcode == null
+      || this.shared.billing.phone == ""
     ) {
       return true;
     }
     else
       return false;
   }
-  submit() {
+ /* submit() {
     this.navCtrl.navigateForward("billing-address");
+  }*/
+
+  submit() {
+    this.navCtrl.navigateForward("shipping-method");
+   // this.applicationRef.tick();
   }
 
   async selectCountryPage() {
@@ -81,11 +88,11 @@ export class ShippingAddressPage implements OnInit {
     this.userAddress.getAddress().then((value: any) => {
       this.shared.shipping.country = value.countryCode;
       this.shared.shipping.city = value.locality;
-      this.shared.shipping.postcode = value.postalCode;
+      //this.shared.shipping.postcode = '';
       this.shared.shipping.state = this.location.getStateCode(value.countryCode, value.administrativeArea);
-      this.shared.shippingStateName = value.administrativeArea;
+     // this.shared.shippingStateName = '';
       this.shared.shippingCountryName = value.countryName;
-      this.shared.shipping.address_1 = value.subLocality;
+     // this.shared.shipping.address_1 = '';
       this.loading.hide();
     });
   }

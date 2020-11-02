@@ -1,7 +1,7 @@
-// Project Name: Ionic woocommerce
-// Project URI: http://themes-coder.com/products/ionic-woocommerce/
-// Author: themes-coder Team
-// Author URI: http://themes-coder.com/
+// Project Name: Dollars bijoux
+// Project URI: http://dollarsbijoux.com/
+// Author: Morel Choupo
+// Author URI: 
 import * as tslib_1 from "tslib";
 import { Injectable, ApplicationRef } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
@@ -27,10 +27,10 @@ let ConfigService = class ConfigService {
         this.applicationRef = applicationRef;
         this.events = events;
         this.httpNative = httpNative;
-        // public url: string = 'http://tcshop.ionicecommerce.com';
+        // public url: string = 'http://tcshop.dollarsbijoux.com';
         // public consumerKey: string = 'ck_ee23f4235c5a9c1eb04b96b85048a2a312dc3225';
         // public consumerSecret: string = 'cs_502ced0196a050298c91d4d9febee1004274564b';
-        this.url = 'http://woodemo0.ionicecommerce.com';
+        this.url = 'http://woodemo0.dollarsbijoux.com';
         this.consumerKey = 'ck_e7f486f622aafd76463291494c81c5350ac47a79';
         this.consumerSecret = 'cs_609563b9569734e4d373588c2688f9782713728f';
         // public url: string = 'http://localhost/wordpress';

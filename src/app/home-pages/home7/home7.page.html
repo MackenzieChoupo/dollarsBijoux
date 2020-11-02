@@ -25,9 +25,9 @@
   <app-categories [type]="'name&count'"></app-categories>
 
   <ion-segment [(ngModel)]="segments">
-    <ion-segment-button value="topSeller">{{ 'Nouveautés' | translate }}</ion-segment-button>
-    <ion-segment-button value="deals">{{ 'En promotion' | translate }} </ion-segment-button>
-    <ion-segment-button value="mostLiked"> {{ 'A la une' | translate }}</ion-segment-button>
+    <ion-segment-button value="topSeller">Nouveautés</ion-segment-button>
+    <ion-segment-button value="deals">En promotion</ion-segment-button>
+    <ion-segment-button value="mostLiked"> A la une</ion-segment-button>
   </ion-segment>
   <div [ngSwitch]="segments">
 
@@ -37,7 +37,7 @@
         <app-product [data]="p" [type]="'normal'"></app-product>
       </ion-slide>
       <ion-slide>
-        <ion-button fill="clear" (click)="openProducts('latest')"> {{'Voir plus'| translate}}
+        <ion-button fill="clear" (click)="openProducts('latest')">Voir plus
           <ion-icon name="arrow-dropright"></ion-icon>
         </ion-button>
       </ion-slide>

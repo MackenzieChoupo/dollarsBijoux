@@ -12,30 +12,28 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <h4><b>{{'Adresse de livraison'|translate}}</b></h4>
+      <h4>{{'Vos coordonnées'}}</h4>
     </ion-card-header>
     <ion-card-content>
-      {{order.shipping.address_1+', '+order.shipping.city+', '+order.shipping.state+' '+order.shipping.postcode+',
-      '+order.shipping.country}}
+      {{order.billing.last_name+ ','+order.billing.last_name+ ','+order.billing.phone+ ','+order.billing.city+ ','+order.shipping.country}}
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+ <!--<ion-card>
     <ion-card-header>
       <h4><b>{{'Adresse de facturation'|translate}}</b></h4>
     </ion-card-header>
     <ion-card-content>
-      {{order.billing.address_1+', '+order.billing.city+', '+order.billing.state+' '+order.billing.postcode+',
-      '+order.billing.country}}
+      {{order.billing.city+', '+order.billing.country}}
     </ion-card-content>
-  </ion-card>
+  </ion-card>--> 
 
   <ion-card *ngFor="let s of order.shipping_lines">
     <ion-card-header>
-      <h4><b>{{'Methode de livraison'|translate}}</b></h4>
+      <h4><b>{{'Lieu de livraison'}}</b></h4>
     </ion-card-header>
     <ion-card-content>
-      {{s.method_title}}
+      {{order.shipping_lines[0].method_title}}
     </ion-card-content>
   </ion-card>
 
@@ -44,13 +42,13 @@
       <h4><b>Frais de livraison</b></h4>
     </ion-card-header>
     <ion-card-content>
-      {{addCurrecny(order.shipping_total)}}
+      {{order.shipping_total}} FCFA
     </ion-card-content>
   </ion-card>
 
   <ion-card class="order-product">
     <ion-card-header>
-      {{'Produits'|translate}}
+      {{'infos sur la commande'}}
     </ion-card-header>
     <ion-card-content *ngFor="let product of order.line_items">
       <ion-row>
@@ -61,25 +59,29 @@
           </h3>
         </ion-col>
       </ion-row>
+      <ion-row *ngFor="let att of product.meta_data">
+        <ion-col size="4">{{att.key}}&nbsp;:</ion-col>
+        <ion-col size="8">{{att.value}}</ion-col>
+      </ion-row>
       <ion-row>
-        <ion-col class="ion-text-left" size="6">{{'Prix' |translate}}&nbsp;:&nbsp;</ion-col>
-        <ion-col class="ion-text-right" size="6">{{addCurrecny(product.price)}}</ion-col>
+        <ion-col class="ion-text-left" size="6">{{'Prix'}}&nbsp;:&nbsp;</ion-col>
+        <ion-col class="ion-text-right" size="6">{{product.price}} FCFA</ion-col>
       </ion-row>
 
-      <ion-row *ngFor="let att of product.meta_data">
+      <ion-row *ngFor="let att of product.customer_note">
         <ion-col size="6">{{att.key}}&nbsp;:</ion-col>
         <ion-col size="6">{{att.value}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col class="ion-text-left" size="6">{{'Quantité'|translate}}&nbsp;:&nbsp;</ion-col>
+        <ion-col class="ion-text-left" size="6">{{'Quantité'}}&nbsp;:&nbsp;</ion-col>
         <ion-col class="ion-text-right" size="6">{{product.quantity}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-text-left" size="6">
           <strong>{{'Total' |translate}}</strong>&nbsp;:&nbsp;</ion-col>
         <ion-col class="ion-text-right" size="6">
-          <strong>{{addCurrecny(product.total)}}</strong>
+          <strong>{{product.total}} FCFA</strong>
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -94,7 +96,7 @@
           Tax d'envoi
         </ion-col>
         <ion-col class="ion-text-right" col-6>
-          {{addCurrecny(order.shipping_tax) }}
+          {{order.shipping_tax}} FCFA
         </ion-col>
       </ion-row>
       <ion-row>
@@ -102,7 +104,7 @@
           livraison
         </ion-col>
         <ion-col class="ion-text-right" size="6">
-          {{addCurrecny(order.shipping_total)}}
+          {{order.shipping_total}} FCFA
         </ion-col>
       </ion-row>
       <ion-row>
@@ -110,7 +112,7 @@
           Taxe
         </ion-col>
         <ion-col class="ion-text-right" size="6">
-          {{addCurrecny(order.discount_total)}}
+          {{order.discount_total}} FCFA
         </ion-col>
       </ion-row>
       <ion-row>
@@ -118,7 +120,7 @@
           {{'Total'|translate}}
         </ion-col>
         <ion-col class="ion-text-right" size="6">
-          <strong>{{addCurrecny(order.total)}}</strong>
+          <strong>{{order.total}} FCFA</strong>
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -141,7 +143,7 @@
           {{c.code}}
         </ion-col>
         <ion-col col-6 class="ion-text-right">
-          {{addCurrecny(c.discount)}}
+          {{c.discount}} FCFA
         </ion-col>
       </ion-row>
     </ion-card-content>
@@ -149,7 +151,7 @@
 
   <ion-card *ngIf="order.customer_note!=''">
     <ion-card-header>
-      {{'Infos sur la commande'|translate}}
+      {{'Information de personnalisation de la commande'}}
     </ion-card-header>
     <ion-card-content>
       {{order.customer_note}}

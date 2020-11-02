@@ -76,8 +76,23 @@
           <ion-col size="6">
             {{'Status'|translate}}
           </ion-col>
-          <ion-col class="ion-text-right" size="6">
-            <strong>{{order.status|translate}}</strong>
+          <ion-col *ngIf="order.status=='pending'" class="ion-text-right" size="6">
+            <strong>en attente</strong>
+          </ion-col>
+          <ion-col *ngIf="order.status=='refunded'" class="ion-text-right" size="6">
+            <strong>remboursé</strong>
+          </ion-col>
+          <ion-col *ngIf="order.status=='cancelled'" class="ion-text-right" size="6">
+            <strong>Annulé</strong>
+          </ion-col>
+          <ion-col *ngIf="order.status=='failed'" class="ion-text-right" size="6">
+            <strong>echoué</strong>
+          </ion-col>
+          <ion-col *ngIf="order.status=='processing'" class="ion-text-right" size="6">
+            <strong>en cours</strong>
+          </ion-col>
+          <ion-col *ngIf="order.status=='completed'" class="ion-text-right" size="6">
+            <strong>terminé</strong>
           </ion-col>
         </ion-row>
       </ion-card-content>

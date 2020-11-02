@@ -43,7 +43,7 @@ export class AddReviewPage implements OnInit {
   }
   getNonce() {
     this.loading.show();
-    this.http.get(this.config.url + "/api/get_nonce/?controller=AppSettings&method=create_product_review").subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + "/api/get_nonce/?controller=AppSettings&method=create_product_review").subscribe((data: any) => {
       this.nonce = data.nonce;
       console.log(data);
       this.loading.hide();
@@ -51,7 +51,7 @@ export class AddReviewPage implements OnInit {
   }
   addComment() {
     this.loading.show();
-    this.http.get(this.config.url + "/api/appsettings/create_product_review/?insecure=cool&nonce="
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + "/api/appsettings/create_product_review/?insecure=cool&nonce="
       + this.nonce
       + "&author_name=" + this.formData.name
       + "&author_email=" + this.formData.email

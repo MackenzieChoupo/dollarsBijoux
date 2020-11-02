@@ -75,7 +75,7 @@ export class StorePage implements OnInit {
 
   getProducts() {
     if (this.page == 1) this.loading.show();
-    this.config.getWithUrl(this.config.url + '/api/appsettings/ionic_vendor_products/?insecure=cool&post_author=' + this.id + "&page=" + this.page).then((response: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appsettings/ionic_vendor_products/?insecure=cool&post_author=' + this.id + "&page=" + this.page).then((response: any) => {
       let q = 'products?include=' + response.data + "&status=publish";
       this.config.getWoo(q).then((data: any) => {
         if (this.page == 1) this.loading.hide();

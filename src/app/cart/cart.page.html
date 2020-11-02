@@ -67,7 +67,7 @@
               </ion-button>
             </div>
             <br /><br />
-            <p class="para-price-ori">{{product.subtotal | curency}}</p>
+            <p class="para-price-ori" >{{product.subtotal}} FCFA</p>
           </ion-col>
         </ion-row>
         <ion-row *ngFor="let att of product.meta_data">
@@ -76,7 +76,7 @@
         </ion-row>
         <ion-row>
           <ion-col size="2.5">
-            <ion-button color="secondary" (click)="getSingleProductDetail(product.product_id)">{{'Voir' | translate}}</ion-button>
+            <ion-button color="secondary" (click)="getSingleProductDetail(product?.product_id)">{{'Voir' | translate}}</ion-button>
           </ion-col>
           <ion-col size="8.5">
             <ion-button fill="clear" color="danger" (click)="removeCart(product.cart_id);">{{'Retirer' | translate}}
@@ -94,7 +94,7 @@
             {{'Code Promo'|translate}}
           </ion-col>
           <ion-col size="6" class="ion-text-right">
-            {{coupon.code}}
+            code promo
           </ion-col>
         </ion-row>
         <ion-row>
@@ -107,16 +107,16 @@
         </ion-row>
         <ion-row>
           <ion-col size="12" *ngIf="coupon.discount_type == 'percent'">
-            {{'A percentage discount for the entire cart'|translate}}
+            {{'Un pourcentage de réduction pour tout le panier'|translate}}
           </ion-col>
           <ion-col size="12" *ngIf="coupon.discount_type == 'fixed_cart'">
-            {{'A fixed total discount for the entire cart'|translate}}
+            {{'Une remise totale fixe pour tout le panier'|translate}}
           </ion-col>
           <ion-col size="12" *ngIf="coupon.discount_type == 'fixed_product'">
-            {{'A fixed total discount for selected products only'|translate}}
+            {{'Une remise totale fixe pour les produits sélectionnés uniquement'|translate}}
           </ion-col>
           <ion-col size="12" *ngIf="coupon.discount_type == 'percent_product'">
-            {{'A percentage discount for selected products only'|translate}}
+            {{'Un pourcentage de réduction pour les produits sélectionnés uniquement'|translate}}
           </ion-col>
           <ion-col size="12">
             <ion-button small color="secondary" (click)="deleteCoupon(coupon.code)">{{'Retirer'|translate}}
@@ -151,7 +151,7 @@
           {{'SousTotal'|translate}}
         </ion-col>
         <ion-col size="6" class="ion-text-right">
-          {{subtotal| curency}}
+          {{subtotal}} FCFA
         </ion-col>
       </ion-row>
       <ion-row>
@@ -159,7 +159,7 @@
           {{'Remise'|translate}}
         </ion-col>
         <ion-col size="6" class="ion-text-right">
-          - {{(subtotal-total)| curency}}
+          - {{(subtotal-total)}} FCFA
         </ion-col>
       </ion-row>
       <ion-row>
@@ -167,7 +167,7 @@
           {{'Total'|translate}}
         </ion-col>
         <ion-col size="6" class="ion-text-right">
-          {{total| curency}}
+          {{total}} FCFA
         </ion-col>
       </ion-row>
     </ion-card-content>

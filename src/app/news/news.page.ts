@@ -39,7 +39,7 @@ export class NewsPage implements OnInit {
     var dat: { [k: string]: any } = {};
     dat.language_id = this.config.langId;
     dat.is_feature = 1;
-    this.config.getWithUrl(this.config.url + '/wp-json/wp/v2/posts/?sticky=true&page=' + this.page2 + "&" + this.config.productsArguments).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/wp-json/wp/v2/posts/?sticky=true&page=' + this.page2 + "&" + this.config.productsArguments).then((data: any) => {
       data.forEach((value, index) => {
 
         this.getImagePost(value);
@@ -66,7 +66,7 @@ export class NewsPage implements OnInit {
     var data: { [k: string]: any } = {};
     data.language_id = this.config.langId;
     data.page_number = this.page2;
-    this.config.getWithUrl(this.config.url + '/wp-json/wp/v2/categories/?page=' + this.page2 + "&" + this.config.productsArguments).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/wp-json/wp/v2/categories/?page=' + this.page2 + "&" + this.config.productsArguments).then((data: any) => {
 
       if (this.page2 == 1) { this.categories = []; }
 
@@ -92,7 +92,7 @@ export class NewsPage implements OnInit {
   //getting list of posts
   getPosts() {
     if (this.page == 1) { this.loading.show(); this.loadingServerDataPosts = false; }
-    this.config.getWithUrl(this.config.url + '/wp-json/wp/v2/posts/?page=' + this.page + "&" + this.config.productsArguments).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/wp-json/wp/v2/posts/?page=' + this.page + "&" + this.config.productsArguments).then((data: any) => {
 
       this.infinite.complete();//stopping infinite scroll loader
       if (this.page == 1) { this.posts = []; this.infinite.disabled = false; this.loading.hide(); this.getCategories(); }

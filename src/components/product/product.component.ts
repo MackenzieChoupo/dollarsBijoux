@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    this.shared.addToCart(this.p, null, null, null);
+    this.shared.addToCart(this.p, null, null, null, null);
     //this.navCtrl.push(CartPage); 
   }
 

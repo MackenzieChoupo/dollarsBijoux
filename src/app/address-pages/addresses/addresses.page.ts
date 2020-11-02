@@ -116,7 +116,7 @@ export class AddressesPage implements OnInit {
       let dat = data
       this.shared.customerData.billing = dat.billing;
       this.storage.set('customerData', this.shared.customerData);
-      this.shared.toast("Billing Address Updated");
+      this.shared.toast("Adresse de facturation mise à jour");
     });
   }
   updateShippingAddress() {
@@ -132,7 +132,7 @@ export class AddressesPage implements OnInit {
       console.log("customer data");
       console.log(this.shared.customerData);
       this.storage.set('customerData', this.shared.customerData);
-      this.shared.toast("Shipping Address Updated");
+      this.shared.toast("Adresse de livraison mise à jour");
     });
   }
   async selectCountryPage(value) {

@@ -1,8 +1,8 @@
 {
   "_from": "onesignal-cordova-plugin",
-  "_id": "onesignal-cordova-plugin@2.6.0",
+  "_id": "onesignal-cordova-plugin@2.11.0",
   "_inBundle": false,
-  "_integrity": "sha512-ekBYMtt9KrHIexKy4U8kU2JGv5q04/FyvbV+hfHIhsQwSrdiv3JWsRf24gU5Dpl0oUFAqT66ZBlWuvHJ923IsA==",
+  "_integrity": "sha512-qcFI3H1SxEmz6QL09yL3pPFtSgFMv1JpBoEbSKF3gg0MzNfaZiDaLat5KRLsFpUI3q8l8ZyYsdXs87cH82gJxQ==",
   "_location": "/onesignal-cordova-plugin",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.6.0.tgz",
-  "_shasum": "c7b7aac3b03ae59f016bc9c50b5c4e1d7ccb6968",
+  "_resolved": "https://registry.npmjs.org/onesignal-cordova-plugin/-/onesignal-cordova-plugin-2.11.0.tgz",
+  "_shasum": "e10603b9de6b2f035bd8f36a37bc2d5eef79019f",
   "_spec": "onesignal-cordova-plugin",
-  "_where": "/Volumes/data/development/ionic 4/ionicWoocommerce",
+  "_where": "/home/morel/Bureau/solution android dollars bijoux/App Source Code/dollarsBijoux",
   "author": {
     "name": "Josh Kasten, Brad Hesse, Rodrigo Gomez-Palacio"
   },
@@ -92,5 +92,5 @@
     "type": "git",
     "url": "git+https://github.com/onesignal/OneSignal-Cordova-SDK.git"
   },
-  "version": "2.6.0"
+  "version": "2.11.0"
 }

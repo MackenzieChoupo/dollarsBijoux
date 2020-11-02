@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-// Project Name: IonicEcommerce
-// Project URI: http://ionicecommerce.com
+// Project Name: dollarsbijoux
+// Project URI: http://dollarsbijoux.com
 // Author: VectorCoder Team
 // Author URI: http://vectorcoder.com/
 import { Injectable, ApplicationRef } from '@angular/core';
@@ -59,7 +59,7 @@ let SharedDataService = class SharedDataService {
             address_2: '',
             city: '',
             state: '',
-            postcode: '',
+            //postcode= null,
             country: '',
             email: '',
             phone: ''
@@ -74,7 +74,7 @@ let SharedDataService = class SharedDataService {
             address_2: '',
             city: '',
             state: '',
-            postcode: '',
+            //postcode= null,
             country: ''
         };
         this.shippingCountryName = "";

@@ -1,13 +1,12 @@
-// Project Name: IonicEcommerce
-// Project URI: http://ionicecommerce.com
+// Project Name: dollarsbijoux
+// Project URI: http://dollarsbijoux.com
 // Author: Morel Choupo
-// Author URI: http://vectorcoder.com/
 
 import { ModalController, NavController } from '@ionic/angular';
 import { Injectable, ApplicationRef, ChangeDetectorRef,Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-
+//import * as HA from '@woocommerce/woocommerce-rest-api';
 
 
 import { ConfigService } from '../config/config.service';
@@ -22,9 +21,14 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 
+
 @Injectable()
 export class SharedDataService {
-
+ // Woocommerce: any;
+  public static categoryId;
+  /*public url: string = 'https://dollarsbijoux.com';
+  public consumerKey: string = 'ck_3a5c590f46556e7d542b8ae25c1e1266d9bece06';
+  public consumerSecret: string = 'cs_b994779812af2a1694688e15f2b058ebb7c4eb0d';*/
   public banners = [];
   public tab1: any = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   public tab2: any = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -36,16 +40,71 @@ export class SharedDataService {
   public customerData: { [k: string]: any } = {};
   public recentViewedProducts = new Array();
   public wishListProducts = new Array();
-  public cartProducts = new Array();
+  public cartProducts: any = new Array();
   public couponArray = new Array();
   public cartquantity;
   public wishList = new Array();
-  public tempdata: { [k: string]: any } = {};
+  public tempdata: { [k: string]: any } = {};Fba
   public dir = "ltr";
   public selectedFooterPage = "HomePage";
-  public cartTempProducts = [];
+  public cartTempProducts = []; 
   public translationListArray = [];
-  billing = {
+  //public url: string = this.getCountryParams(ConfigService.countryCode)[0];
+  //public consumerKey: string = this.getCountryParams(ConfigService.countryCode)[1];
+  //public consumerSecret: string = this.getCountryParams(ConfigService.countryCode)[2];
+
+  getCountryParams(countryCode){
+    console.log(countryCode);
+    //let code = countryCode.tolower();
+    var arrayParams =[];
+    switch(countryCode){
+      case 'cm':{
+        arrayParams[0] =  'https://dollarsbijoux.com';
+        arrayParams[1] =  'ck_3a5c590f46556e7d542b8ae25c1e1266d9bece06';
+        arrayParams[2] =  'cs_b994779812af2a1694688e15f2b058ebb7c4eb0d';
+        break;
+      }
+      case 'gb':{
+        console.log('ici');
+        arrayParams[0] =  'https://gabon.dollarsbijoux.com';
+        arrayParams[1] =  'ck_15bbb81cfdc8c91e3f462b49c5ddfbd52eac5541';
+        arrayParams[2] =  'cs_5d86e67951578a4728a55d14d23a3a5792cce7b1';
+        break;
+      }
+      case 'ck':{
+        arrayParams[0] =  'https://congokinshasa.dollarsbijoux.com';
+        arrayParams[1] =  'ck_5e0f530b622e40c0057a316af0cc7459393a9c6e';
+        arrayParams[2] =  'cs_2812188c2beb0286f9a00121689b313070b92499';
+        break;
+      }
+      case 'cb':{
+        arrayParams[0] =  'https://congobraza.dollarsbijoux.com';
+        arrayParams[1] =  'ck_4f8e795f1cc044458f2cbb0ac87ca469d52ccebe';
+        arrayParams[2] =  'cs_98360fc6353a8c0e6a822ef11cd91d2b9e07944a';
+        break;
+      }
+      case 'ci':{
+        arrayParams[0] =  'https://cotedivoire.dollarsbijoux.com';
+        arrayParams[1] =  'ck_4d40dcd8bd3fdbf7942a8a5862607981a3a65f8f';
+        arrayParams[2] =  'cs_bbda8ca948bd13b9ceb915d3fec4064a604b993f';
+        break;
+      }
+      default: {
+        console.log('Default');
+        arrayParams[0] =  'https://dollarsbijoux.com';
+        arrayParams[1] =  'ck_3a5c590f46556e7d542b8ae25c1e1266d9bece06';
+        arrayParams[2] =  'cs_b994779812af2a1694688e15f2b058ebb7c4eb0d';
+        break;
+      }
+        
+    }
+    console.log('Array 0 ' + arrayParams[0]);
+    return arrayParams;
+    //this.navCtrl.navigateForward('home7');    
+  }
+
+  customerNotes;
+  billing:any = {
     first_name: '',
     last_name: '',
     company: '',
@@ -53,14 +112,14 @@ export class SharedDataService {
     address_2: '',
     city: '',
     state: '',
-    postcode: '',
+   // postcode: '',
     country: '',
     email: '',
     phone: ''
   };
   billingCountryName = "";
   billingStateName = "";
-  shipping = {
+  shipping:any = {
     first_name: '',
     last_name: '',
     company: '',
@@ -68,15 +127,16 @@ export class SharedDataService {
     address_2: '',
     city: '',
     state: '',
-    postcode: '',
+    //postcode: '',
     country: ''
   };
   shippingCountryName = "";
   shippingStateName = "";
-  shipping_lines = [];
-  listTaxRates = [];
+  shipping_lines:any =  [];
+  line_items:any =  [];
+  listTaxRates:any = [];
   sameAddress = false;
-  checkOutPageText = "Place Your Order";
+  checkOutPageText = "Valider votre commande";
   public device = '';
   public attributes = [];
   public headerHexColor = "#51688F";
@@ -84,9 +144,11 @@ export class SharedDataService {
   singleProductPageData = [];
   myOrderDetialPageData: { [k: string]: any; };
   storePageData = [];
-
+ 
+  
   constructor(private http: HttpClient,
     public config: ConfigService,
+    public navCtrl: NavController,
     private storage: Storage,
     public loading: LoadingService,
     public events: Events,
@@ -100,7 +162,14 @@ export class SharedDataService {
     public splashScreen: SplashScreen, ) {
 
 
-
+    /* const WooCommerce = HA({
+      url: this.url,
+      consumerKey: this.consumerKey,
+      consumerSecret: this.consumerSecret,
+      wpAPI: true,
+      queryStringAuth: true,
+      version: 'wc/v3'
+    });*/
     this.http.get('assets/i18n/' + localStorage.languageCode + ".json").subscribe((data: any) => {
       this.translationListArray = data;
       this.applicationRef.tick();
@@ -145,10 +214,15 @@ export class SharedDataService {
       if (!this.splashScreenHide) { this.splashScreen.hide(); this.splashScreenHide = true; }
     }
   }
+  showLog(){
+    console.log('Country '+ ConfigService.countryCode + ' url ' + this.config.getCountryParams(ConfigService.countryCode)[0]);
+  }
   onStart() {
+     this.showLog();
     //banners
-    this.config.getWithUrl(this.config.url + '/api/appsettings/get_all_banners/?insecure=cool').then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appsettings/get_all_banners/?insecure=cool').then((data: any) => {
       this.banners = data.data;
+      console.log(this.config.getCountryParams(ConfigService.countryCode)[0] );
     });
     // //getting tab 1 products?status=publish
     this.config.getWoo("products?status=publish" + "&" + this.config.productsArguments).then((data: any) => {
@@ -165,7 +239,8 @@ export class SharedDataService {
       this.tab3 = data
       this.applicationRef.tick();
     });
-    let url = this.config.url + '/wp-json/wp/v2/pages/';
+    let url = this.config.getCountryParams(ConfigService.countryCode)[0] + '/wp-json/wp/v2/pages/';
+    console.log(url);
     if (this.config.appSettings.about_page_id != undefined) {
       let ids = this.config.appSettings.about_page_id + "," + this.config.appSettings.refund_page_id + "," + this.config.appSettings.terms_page_id + "," + this.config.appSettings.privacy_page_id;
       url = url + '?include=' + ids;
@@ -186,7 +261,7 @@ export class SharedDataService {
 
   getVendorList() {
     if (this.config.showVendorInfo) {
-      this.config.getWithUrl(this.config.url + "/api/appsettings/get_featured_dokan_vendors_list/?insecure=cool").then((data: any) => {
+      this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + "/api/appsettings/get_featured_dokan_vendors_list/?insecure=cool").then((data: any) => {
         if (this.vendors[0] == 1) this.vendors = [];
 
         for (let d of data.data) {
@@ -202,7 +277,7 @@ export class SharedDataService {
       //console.log("dokan is enabled");
     }
     else if (this.config.showWcVendorInfo) {
-      this.config.getWithUrl(this.config.url + "/api/appsettings/get_featured_wcvendors_list/?insecure=cool").then((data: any) => {
+      this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + "/api/appsettings/get_featured_wcvendors_list/?insecure=cool").then((data: any) => {
         if (this.vendors[0] == 1) this.vendors = [];
         //console.log(data.data)
         if (data.data == null) data.data = [];
@@ -305,9 +380,12 @@ export class SharedDataService {
     });
     this.events.publish('recentDeleted');
   }
-  //adding into cart array products
-  addToCart(product, variation, quantity: any, metaData: any) {
 
+   
+
+  //adding into cart array products
+  addToCart(product, variation, quantity: any, metaData: any, customerNotes: any) {
+    console.log('Details1 : ' + customerNotes);
     if (!this.checkCart(product, quantity)) return 0;
     if (this.alreadyInCart(product, variation, quantity)) return 0;
 
@@ -324,11 +402,13 @@ export class SharedDataService {
     p.tax_class = product.tax_class;
     p.tax_status = product.tax_status;
     p.price = product.price;
+    p.customerNotes = customerNotes;
     p.price_html = product.price_html;
     p.subtotal = parseFloat(product.price) * parseInt(p.quantity);
     p.total = parseFloat(product.price) * parseInt(p.quantity);
     p.on_sale = product.on_sale;
     p.categories = product.categories;
+    
 
     if (metaData != null) p.meta_data = metaData;
     p.sold_individually = product.sold_individually;
@@ -341,6 +421,7 @@ export class SharedDataService {
       p.name = variation.name;
       p.stock_quantity = variation.stock_quantity;
       p.tax_status = variation.tax_status;
+      p.customerNotes = customerNotes;
       if (variation.images[0].src.indexOf('placeholder') == -1) {
         p.image = variation.images[0].src;
         //console.log(variation.images[0].src)
@@ -534,9 +615,9 @@ export class SharedDataService {
   getProducts() {
     var data = [];
     for (let v of this.cartProducts) {
-      var obj = { quantity: v.quantity, product_id: v.product_id, total: v.total.toString() };
+      var obj = { quantity: v.quantity, product_id: v.product_id, total: v.total.toString(), subtotal: v.subtotal.toString()};
       if (v.variation_id) Object.assign(obj, { variation_id: v.variation_id })
-      //if (v.meta_data) Object.assign(obj, { meta_data: v.meta_data })
+      if (v.meta_data) Object.assign(obj, { meta_data: v.meta_data })
       data.push(obj);
     }
     return data;
@@ -603,7 +684,7 @@ export class SharedDataService {
     // var uri = encodeURIComponent(JSON.stringify(data));
     // let d = { "order_link": data };
     return new Promise(resolve => {
-      this.http.post(this.config.url + '/api/appsettings/ionic_data_link/?insecure=cool', data).subscribe(dat => {
+      this.http.post(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appsettings/ionic_data_link/?insecure=cool', data).subscribe(dat => {
         console.log(dat);
         resolve(dat);
         this.loading.hide();
@@ -613,6 +694,7 @@ export class SharedDataService {
   }
   //=================================================================================================================================
   openCheckoutWebview(data) {
+  /*
     let options: ThemeableBrowserOptions = {
       statusbar: {
         color: this.headerHexColor
@@ -633,8 +715,8 @@ export class SharedDataService {
       },
       backButton: {
         wwwImage: 'assets/back.png',
-        align: 'left'
-        //event: 'closePressed'
+        align: 'left',
+        event: 'closePressed'
       },
       backButtonCanClose: true,
       //hidden: 'yes',
@@ -646,22 +728,19 @@ export class SharedDataService {
       const b: ThemeableBrowserObject = this.themeableBrowser.create(this.config.url + "/mobile-checkout/?order_id=" + id, '_blank', options);
       let orderPlaced = false;
       b.on('loadstart').subscribe(res => {
-        this.translateString('Loading').then((res: string) => {
           this.spinnerDialog.show("", res, true, { overlayOpacity: 1.00 });
           setTimeout(() => {
             this.spinnerDialog.hide();
           }, 5000);
-        });
-
         if (res.url.indexOf('order-received') != -1) {
           console.log(res.url);
           orderPlaced = true;
           b.close();
           this.events.publish('openThankYouPage');
-        } else if (res.url.indexOf('cancel_order=true') != -1) {
-          b.close();
+            } 
+            else if (res.url.indexOf('cancel_order=true') != -1) {
+                         b.close();
         }
-
       });
 
       b.on('closePressed').subscribe(res => {
@@ -674,7 +753,17 @@ export class SharedDataService {
       b.on('exit').subscribe(res => {
         if (orderPlaced) this.events.publish('openThankYouPage');
       });
-    });
+    });*/
+
+   /*  this.Woocommerce.post("orders", data)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });*/
+    
+   
   }
 
   checkAvatar() {
@@ -729,16 +818,13 @@ export class SharedDataService {
   }
   //=================================================
 
-  showAlert(text) {
-    this.translateArray([text, "ok", "Alert"]).then(async (res) => {
-      console.log(res);
+  async showAlert(text) {
       const alert = await this.alertCtrl.create({
-        header: res["Alert"],
-        message: res[text],
-        buttons: [res["ok"]]
+        header: text["Alert"],
+        message: text[text],
+        buttons: [text["ok"]]
       });
       await alert.present();
-    });
   }
 
   showAlertWithTitle(text, title) {

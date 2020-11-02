@@ -5,11 +5,11 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{'Select Zone'|translate}}</ion-title>
+    <ion-title>Selectionnez votre region</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="page-select-zones">
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{'Search'|translate}}" autofocus></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Recherchez" autofocus></ion-searchbar>
   <!-- <ion-item *ngFor="let item of items" (click)="selectZone(item)">
       {{ item.name }}
     </ion-item>
@@ -22,7 +22,7 @@
       {{ item.name }}
     </ion-item>
     <ion-item (click)="selectZone('other')" *ngIf="hideOther()">
-      {{'other'|translate}}
+      autres
     </ion-item>
   </ion-list>
 </ion-content>

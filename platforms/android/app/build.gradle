@@ -98,7 +98,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../onesignal-cordova-plugin/app-build-extras-onesignal.gradle"
+apply from: "../onesignal-cordova-plugin/dollarsbijoux-build-extras-onesignal.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras1 = file('build-extras.gradle').exists()
@@ -296,10 +296,10 @@ dependencies {
     implementation(project(path: ":CordovaLib"))
     implementation "com.squareup.okhttp3:okhttp-urlconnection:3.10.0"
     implementation "com.android.support:support-v4:27.+"
-    implementation "com.facebook.android:facebook-android-sdk:5.5.1"
+    implementation "com.facebook.android:facebook-android-sdk:5.13.0"
     implementation "com.android.support:support-annotations:27.+"
     implementation "com.android.support:support-v4:24.1.1+"
-    implementation "com.onesignal:OneSignal:3.11.3"
+    implementation "com.onesignal:OneSignal:3.15.1"
     // SUB-PROJECT DEPENDENCIES END
 }
 

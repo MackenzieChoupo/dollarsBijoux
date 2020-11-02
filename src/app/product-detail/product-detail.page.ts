@@ -20,7 +20,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductDetailPage implements OnInit {
 
   public product;
-
+  isChecked = false;
+  customerNotes: any;
+  metadata:any;
   selectAttributes = new Array;
   selectedVariation = null;
   quantity = 1;
@@ -41,6 +43,11 @@ export class ProductDetailPage implements OnInit {
   public loaderWcVendorInfo = false;
   public wcVendorInfo: any;
   public loaderProductVariations = false;
+  public hasList=false;
+
+  public arrayGabarie : String[];
+  public arrayTaille :String[];
+  
   pId: any;
   sliderConfigReleatedItems = {
     slidesPerView: this.config.productSlidesPerPage,
@@ -56,6 +63,7 @@ export class ProductDetailPage implements OnInit {
     public events: Events,
     private storage: Storage,
     public http: HttpClient,
+
 
     private applicationRef: ApplicationRef,
     private socialSharing: SocialSharing,
@@ -77,7 +85,8 @@ export class ProductDetailPage implements OnInit {
     if (this.product.type == 'grouped') { this.getGroupProducts(); }
     this.getRelatedItems();
     this.getProductReviews();
-
+    console.log('Category '+ this.getProductCategory());
+    this.buildMetadata(this.getProductCategory());
     if (this.config.showWcVendorInfo) this.getWcVendorInfo();
   }
   ionViewWillEnter() {
@@ -233,19 +242,142 @@ export class ProductDetailPage implements OnInit {
     this.loading.autoHide(2000);
     this.iab.create(this.product.external_url, "blank");
   }
+  
+  getGabarieArray(){
+    return ['Filigramme','Gabarie 1','Gabarie 2','Gabarie 3','Gabarie 4','Gabarie 5','Gabarie 6','Gabarie 7','Gabarie 8','Gabarie 9','Gabarie 10']
+  }
+
+  getTailleArray()
+  {
+    return ['55 cm','35 cm','42 cm','45 cm','50 cm','55 cm','60 cm','70 cm','80 cm'];
+  }
+
+  getProductCategory(){
+    //"_yoast_wpseo_primary_product_cat"
+    let catid = 0;
+    
+    if (typeof(SharedDataService.categoryId) === "undefined"){
+      catid = 0;
+    }
+    let arrayMetaData = this.product['meta_data'];
+    let id = arrayMetaData.forEach(element => {
+      let arrayKey = element;
+      let categoryKey = arrayKey['key'];
+      if (categoryKey === "_yoast_wpseo_primary_product_cat"){
+        catid = Number.parseInt(arrayKey['value']);
+      } 
+      console.log(catid);
+    });
+
+    return catid;
+  }
+
+   buildMetadata(categoryId=0)
+   {
+
+     switch(categoryId)
+     {
+       case 162:{
+        this.metadata = [
+        {id:1,key:'Texte homme',value:''},
+        {id:2,key:'Texte femme',value:''},
+        {id:3,key:'Taille alliance homme (10 - 100 cm)',value:''},
+        {id:4,key:'Taille alliance femme (10 - 100 cm)',value:''},
+        {id:5,key:'Autres détails',value:''}];
+        break;
+        }
+      case 204:{
+        this.metadata = [
+          {id:1,key:'Texte à graver',value:''},
+          {id:2,key:'Autres détails',value:''}];
+        break;
+     }
+      case 158:{
+        console.log('ICi');
+        this.hasList = true;
+        this.arrayGabarie = this.getGabarieArray();
+        this.arrayTaille = this.getTailleArray();
+        this.metadata = [
+          {id:1,key:'Texte à graver',value:''},
+        //  {id:2,key:'Texte du milieu',value:''},
+         // {id:3,key:'Texte de droite',value:''},
+          {id:4,key:'Gabarie de la chaine',value:''},
+          {id:5,key:'Taille de chaine',value:''},
+          {id:6,key:'Autres détails',value:''}];
+        break;
+     }
+      case 166:{
+        this.hasList = true;
+        this.arrayGabarie = this.getGabarieArray();
+        this.metadata = [
+          {id:4,key:'Gabarie de chaine',value:''},
+          {id:3,key:'Taille de rein',value:''},
+          {id:2,key:'Initial',value:''},
+          {id:1,key:'Motif',value:''},
+          {id:5,key:'Autres détails',value:''}];
+        break;
+     }
+      case 169:{
+        this.metadata = [
+          {id:1,key:'Initial',value:''},
+          {id:2,key:'Motif',value:''},
+          {id:3,key:'Autres détails',value:''}];
+        break;
+     }
+      case 177:{
+        this.metadata = [
+          {id:1,key:'Texte à graver',value:''},
+          {id:2,key:'Autres détails',value:''}];
+        break;
+      }
+      case 176:
+        this.metadata = [
+          {id:1,key:'Texte à graver',value:''},
+          {id:2,key:'Autres détails',value:''}];
+        break;
+      case 155:{
+        this.metadata = [
+          {id:1,key:'Texte à graver',value:''},
+          {id:2,key:'Autres détails',value:''}];
+        break;
+      }
+        case 172:{
+        this.metadata = [
+          {id:1,key:'Texte à sculpter',value:''},
+         // {id:2,key:'Image entière',value:''},
+          {id:3,key:'Autres détails',value:''}];
+        break;
+      }
+      case 201:{
+        this.metadata = [
+          {id:1,key:'Texte à graver',value:''},
+          {id:2,key:'Autres détails',value:''}];
+        break;
+      }
+      default:{
+        this.metadata = [{id:1,key:'Détails',value:''}];
+        break;
+      }
+    }
+   }
 
   addToCartProduct() {
     let total = 0;
-
     //this.loading.autoHide(500);
     console.log(this.selectAttributes);
-    if (this.product.type == 'variable') {
-      this.shared.addToCart(this.product, this.selectedVariation, this.quantity, this.selectAttributes);
+    console.log('Details : ' + this.customerNotes);
+    console.log(this.metadata);
+    //let  metaData = this.getCategoryMetada(this.product, this.customerNotes);
+    //console.log('MetaData '+metaData);
+    if (this.product.type == 'variable') 
+    {
+    this.shared.addToCart(this.product, this.selectedVariation, this.quantity, this.selectAttributes, this.metadata);
       this.navCtrl.pop();
       //this.navCtrl.push(CartPage);
     }
     if (this.product.type == 'simple') {
-      this.shared.addToCart(this.product, null, this.quantity, null);
+      this.shared.addToCart(this.product, null, this.quantity, this.metadata, this.customerNotes);
+     // customer_note = this.customerNotes,
       this.navCtrl.pop();
       //this.navCtrl.push(CartPage);
     }
@@ -254,10 +386,11 @@ export class ProductDetailPage implements OnInit {
       for (let a of this.groupProducts) {
         total = total + a.quantity;
       }
-      if (total == 0) this.shared.translateString("Please Add Quantity").then((res) => { this.shared.showAlert(res); });
+      if (total == 0) this.shared.translateString("Ajouter une quantité svp!").then((res) => { this.shared.showAlert(res); });
       else
         for (let value of this.groupProducts) {
-          if (value.quantity != 0) this.shared.addToCart(value, null, value.quantity, null);
+
+          if (value.quantity != 0) this.shared.addToCart(value, null, value.quantity, null, this.customerNotes);
         }
       if (total != 0) {
         this.navCtrl.pop();
@@ -498,7 +631,7 @@ export class ProductDetailPage implements OnInit {
     }
     else {
       this.loading.show();
-      this.config.getWithUrl(this.config.url + "/wp-json/dokan/v1/stores/" + this.product.store.id).then((data: any) => {
+      this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + "/wp-json/dokan/v1/stores/" + this.product.store.id).then((data: any) => {
         this.loading.hide();
         let d = data;
 
@@ -514,12 +647,17 @@ export class ProductDetailPage implements OnInit {
 
   getWcVendorInfo() {
     this.loaderWcVendorInfo = true;
-    this.config.getWithUrl(this.config.url + "/api/appsettings/get_vendor_info/?insecure=cool&product_id=" + this.product.id).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + "/api/appsettings/get_vendor_info/?insecure=cool&product_id=" + this.product.id).then((data: any) => {
       this.loaderWcVendorInfo = false;
       let d = data;
       this.wcVendorInfo = data.data[0];
       this.applicationRef.tick();
     });
+  }
+
+  onMyBooleanChange() {
+    this.isChecked = true;
+    console.log(this.isChecked);
   }
 
 

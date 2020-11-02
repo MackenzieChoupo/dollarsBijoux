@@ -41,6 +41,7 @@ export class LoginPage implements OnInit {
       this.shared.onePageCheckOut();
     else
       this.events.publish('openShippingAddressPage');
+      //this.navCtrl.navigateForward("/billing-address");
 
     this.dismiss();
   }
@@ -51,17 +52,17 @@ export class LoginPage implements OnInit {
     var formData = new FormData();
     formData.append("username", this.formData.username);
     formData.append("password", this.formData.password);
-    this.http.post(this.config.url + '/api/appusers/generate_cookie/?insecure=cool', formData).subscribe((data: any) => {
+    this.http.post(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/generate_cookie/?insecure=cool', formData).subscribe((data: any) => {
       if (data.status == "ok")
         this.getUserData(data, "simple");
       else {
-        this.errorMessage = data.error;
+        this.errorMessage = "Nom d'utilisateur ou mot de passe invalide";
         this.loading.hide();
       }
-    }, err => {
+    }, err => { 
       this.loading.hide();
       if (err.ok == false) {
-        this.errorMessage = "Invalid Username or Password";
+        this.errorMessage = "Nom d'utilisateur ou mot de passe invalide";
       }
     });
     // this.config.getWoo("customers/" + 118 + "?" + this.config.productsArguments).then((data:any) => {
@@ -139,7 +140,7 @@ export class LoginPage implements OnInit {
     url = '/api/appusers/fb_connect/?insecure=cool&access_token=' + info;
 
 
-    this.http.get(this.config.url + url).subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + url).subscribe((data: any) => {
       this.loading.hide();
       //alert(JSON.stringify(data));
       this.getUserData(data, "fb");

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 
-import { Platform, NavController, Events, ModalController, MenuController } from '@ionic/angular';
+import { Platform, NavController, Events, ModalController, MenuController, IonRouterOutlet, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -28,8 +28,8 @@ import { CurrencyListPage } from './modals/currency-list/currency-list.page';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
-
+export class AppComponent{
+  backButtonSubscription;
   rootPage: any;
   appPages = [];
   // For all pages
@@ -98,8 +98,8 @@ export class AppComponent {
     { name: 'A Propos', icon: 'information-circle', img: 'assets/left-menu-icon/about.png', url: '/about-us', value: 'aboutUsPage' },
     { name: 'Actualités', icon: 'paper', img: 'assets/left-menu-icon/news.png', url: '/news', value: 'newsPage' },
     //{ name: 'Intro', icon: 'logo-ionic', img: 'assets/left-menu-icon/intro.png', url: '/intro', value: 'introPage' },
-   // { name: 'Partagez', icon: 'share', img: 'assets/left-menu-icon/share.png', url: 'share', value: 'sharePage' },
-    //{ name: 'Evaluez Nous', icon: 'star-half', img: 'assets/left-menu-icon/rating.png', url: 'rateUs', value: 'ratePage' },
+    { name: 'Partagez', icon: 'share', img: 'assets/left-menu-icon/share.png', url: 'share', value: 'sharePage' },
+    { name: 'Evaluez Nous', icon: 'star-half', img: 'assets/left-menu-icon/rating.png', url: 'rateUs', value: 'ratePage' },
     { name: 'Reglages', icon: 'settings', img: 'assets/left-menu-icon/setting.png', url: '/settings', value: 'settingsPage' }
   ];
   a4 = [
@@ -114,10 +114,28 @@ export class AppComponent {
     { name: 'A Propos', icon: 'information-circle', img: 'assets/left-menu-icon/about.png', url: '/about-us', value: 'aboutUsPage' },
     { name: 'Actualités', icon: 'paper', img: 'assets/left-menu-icon/news.png', url: '/news', value: 'newsPage' },
    // { name: 'Intro', icon: 'logo-ionic', img: 'assets/left-menu-icon/intro.png', url: '/intro', value: 'introPage' },
-    //{ name: 'Partagez', icon: 'share', img: 'assets/left-menu-icon/share.png', url: 'share', value: 'sharePage' },
-    //{ name: 'Evaluez Nous', icon: 'star-half', img: 'assets/left-menu-icon/rating.png', url: 'rateUs', value: 'ratePage' },
+    { name: 'Partagez', icon: 'share', img: 'assets/left-menu-icon/share.png', url: 'share', value: 'sharePage' },
+    { name: 'Evaluez Nous', icon: 'star-half', img: 'assets/left-menu-icon/rating.png', url: 'rateUs', value: 'ratePage' },
     { name: 'Reglages', icon: 'settings', img: 'assets/left-menu-icon/setting.png', url: '/settings', value: 'settingsPage' }
   ];
+  subscription: any;
+  //code for exit app
+  // set up hardware back button event.
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
+
+  //code for exit app
+  @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+  }
+
+  ionViewWillLeave() {
+    this.subscription.unsubscribe();
+  }
 
   constructor(
     public shared: SharedDataService,
@@ -137,6 +155,7 @@ export class AppComponent {
     public iab: InAppBrowser,
     private socialSharing: SocialSharing,
     private deeplinks: Deeplinks,
+    private toastController: ToastController,
     public menuCtrl: MenuController,
   ) {
     this.initializeApp();
@@ -147,6 +166,7 @@ export class AppComponent {
       //  console.log('network was disconnected :-(');
     });
 
+    
 
     network.onConnect().subscribe(() => {
       if (!connectedToInternet) {
@@ -185,6 +205,8 @@ export class AppComponent {
     events.subscribe('updateSideMenu', (value) => {
       this.getLeftItems();
     });
+
+    this.exitApp();
   }
 
   initializeApp() {
@@ -466,6 +488,7 @@ export class AppComponent {
     }
 
     if (this.deepUrl.indexOf('/product-category/') != -1) {
+      console.log(this.deepUrl);
       //'http://vc.com/product-category/watches/gold-watches/ooo'
       let arr = this.deepUrl.split("/");
       let count = 0;
@@ -515,6 +538,36 @@ export class AppComponent {
       this.loading.hide();
       console.log(err);
     });
+  }
+  exitApp(){
+    this.platform.backButton.subscribe(async () => {
+
+      this.routerOutlets.forEach(async (outlet: IonRouterOutlet) => {
+        if (outlet && outlet.canGoBack()) {
+          outlet.pop();
+
+        } else if (this.router.url === '/home') {
+          if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+            // this.platform.exitApp(); // Exit from app
+            navigator['app'].exitApp(); // work in ionic 4
+
+          } else {
+            const toast = await this.toastController.create({
+              message: 'Press back again to exit App.',
+              duration: 2000,
+              position: 'middle'
+            });
+            toast.present();
+            // console.log(JSON.stringify(toast));
+            this.lastTimeBackPress = new Date().getTime();
+          }
+        }
+      });
+    });
+    
+  }
+  changeCountry(){
+    this.navCtrl.navigateRoot("intro");
   }
 
   checkAvatar() {

@@ -164,11 +164,11 @@
               "count": 1
             },
             {
-              "xml": "<permission android:name=\"com.ionic.app.permission.RECEIVE_ADM_MESSAGE\" android:protectionLevel=\"signature\" />",
+              "xml": "<permission android:name=\"com.morelchoupo.dollarsbijoux.permission.RECEIVE_ADM_MESSAGE\" android:protectionLevel=\"signature\" />",
               "count": 1
             },
             {
-              "xml": "<uses-permission android:name=\"com.ionic.app.permission.RECEIVE_ADM_MESSAGE\" />",
+              "xml": "<uses-permission android:name=\"com.morelchoupo.dollarsbijoux.permission.RECEIVE_ADM_MESSAGE\" />",
               "count": 1
             }
           ],
@@ -210,7 +210,7 @@
               "count": 1
             },
             {
-              "xml": "<receiver android:name=\"com.onesignal.ADMMessageHandler$Receiver\" android:permission=\"com.amazon.device.messaging.permission.SEND\"><intent-filter><action android:name=\"com.amazon.device.messaging.intent.REGISTRATION\" /><action android:name=\"com.amazon.device.messaging.intent.RECEIVE\" /><category android:name=\"com.ionic.app\" /></intent-filter></receiver>",
+              "xml": "<receiver android:name=\"com.onesignal.ADMMessageHandler$Receiver\" android:permission=\"com.amazon.device.messaging.permission.SEND\"><intent-filter><action android:name=\"com.amazon.device.messaging.intent.REGISTRATION\" /><action android:name=\"com.amazon.device.messaging.intent.RECEIVE\" /><category android:name=\"com.morelchoupo.dollarsbijoux\" /></intent-filter></receiver>",
               "count": 1
             }
           ],
@@ -220,7 +220,7 @@
               "count": 1
             },
             {
-              "xml": "<intent-filter android:autoVerify=\"true\"><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><category android:name=\"android.intent.category.BROWSABLE\" /><data android:host=\"tcshop.ionicecommerce.com\" android:pathPrefix=\"/\" android:scheme=\"http\" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /></intent-filter>",
+              "xml": "<intent-filter android:autoVerify=\"true\"><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><category android:name=\"android.intent.category.BROWSABLE\" /><data android:host=\"tcshop.dollarsbijoux.com\" android:pathPrefix=\"/\" android:scheme=\"http\" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /><data android:host=\" \" android:pathPrefix=\"/\" android:scheme=\" \" /></intent-filter>",
               "count": 1
             }
           ]
@@ -264,11 +264,11 @@
         "parents": {
           "/*": [
             {
-              "xml": "<string name=\"fb_app_id\">343705806319721</string>",
+              "xml": "<string name=\"fb_app_id\">712708999584993</string>",
               "count": 1
             },
             {
-              "xml": "<string name=\"fb_app_name\">TC Shop</string>",
+              "xml": "<string name=\"fb_app_name\">DollarsBijoux</string>",
               "count": 1
             },
             {
@@ -282,11 +282,11 @@
         "parents": {
           "/*": [
             {
-              "xml": "<string name=\"fb_app_id\">343705806319721</string>",
+              "xml": "<string name=\"fb_app_id\">712708999584993</string>",
               "count": 1
             },
             {
-              "xml": "<string name=\"fb_app_name\">TC Shop</string>",
+              "xml": "<string name=\"fb_app_name\">DollarsBijoux</string>",
               "count": 1
             },
             {
@@ -300,77 +300,77 @@
   },
   "installed_plugins": {
     "cordova-plugin-add-swift-support": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-advanced-http": {
       "OKHTTP_VERSION": "3.10.0",
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-app-version": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-email-composer": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-facebook4": {
-      "APP_ID": "343705806319721",
-      "APP_NAME": "TC Shop",
+      "APP_ID": "712708999584993",
+      "APP_NAME": "DollarsBijoux",
       "FACEBOOK_HYBRID_APP_EVENTS": "false",
-      "FACEBOOK_ANDROID_SDK_VERSION": "5.5.1",
-      "PACKAGE_NAME": "com.ionic.app"
+      "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0",
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-ionic-webview": {
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-native-spinner": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-nativegeocoder": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-themeablebrowser": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "es6-promise-plugin": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "cordova-plugin-x-socialsharing": {
       "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "ionic-plugin-deeplinks": {
       "URL_SCHEME": "shop",
       "DEEPLINK_SCHEME": "http",
-      "DEEPLINK_HOST": "tcshop.ionicecommerce.com",
+      "DEEPLINK_HOST": "tcshop.dollarsbijoux.com",
       "ANDROID_PATH_PREFIX": "/",
       "ANDROID_2_PATH_PREFIX": "/",
       "ANDROID_3_PATH_PREFIX": "/",
@@ -384,10 +384,10 @@
       "DEEPLINK_4_HOST": " ",
       "DEEPLINK_5_SCHEME": " ",
       "DEEPLINK_5_HOST": " ",
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     },
     "onesignal-cordova-plugin": {
-      "PACKAGE_NAME": "com.ionic.app"
+      "PACKAGE_NAME": "com.morelchoupo.dollarsbijoux"
     }
   },
   "dependent_plugins": {},
@@ -805,6 +805,6 @@
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "5.4.7",
     "ionic-plugin-deeplinks": "1.0.20",
-    "onesignal-cordova-plugin": "2.6.0"
+    "onesignal-cordova-plugin": "2.11.0"
   }
 }

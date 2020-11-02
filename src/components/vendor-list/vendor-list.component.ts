@@ -32,7 +32,7 @@ export class VendorListComponent implements OnInit {
 
     if (this.config.showVendorInfo) {
       this.loading.show();
-      this.config.getWithUrl(this.config.url + "/wp-json/dokan/v1/stores/" + c.user_id).then((data: any) => {
+      this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + "/wp-json/dokan/v1/stores/" + c.user_id).then((data: any) => {
         this.loading.hide();
         let d = data;
         this.shared.storePageData.push(d);

@@ -33,8 +33,8 @@ export class ProductsPage implements OnInit {
   selectedTab = '';
   categoryId = '';
   categoryName = '';
-  sortOrder = 'Newest';
-  sortArray = ['Newest', 'A - Z', 'Z - A'];
+  sortOrder = 'Plus récent';
+  sortArray = ['Plus récent', 'A - Z', 'Z - A'];
   //, 'A - Z Date', 'Z - A Date'
   //'Latest', 'On Sale', 'Featured'
   page = 1;
@@ -110,7 +110,7 @@ export class ProductsPage implements OnInit {
     }
     this.loadingServerData = false;
     let query = '&page=' + this.page;
-    if (this.sortOrder == "Newest") query = query + "&order=desc&order_by=date";
+    if (this.sortOrder == "Plus récent") query = query + "&order=desc&order_by=date";
     else if (this.sortOrder == "A - Z") query = query + "&order=asc&order_by=title";
     else if (this.sortOrder == "Z - A") query = query + "&order=desc&order_by=title";
 
@@ -124,7 +124,7 @@ export class ProductsPage implements OnInit {
     query = query + this.queryAttributes;
     console.log("custom Id = " + query);
     this.getAllAttributes();
-    this.config.getWithUrl(this.config.url + '/api/appsettings/ionic_filter_products/?insecure=cool' + query).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appsettings/ionic_filter_products/?insecure=cool' + query).then((data: any) => {
       if (this.page == 1) this.enableDisableInfiniteScroll(true);
       if (data.data)
         this.listOfFilteredIdsFromCustom = data.data;
@@ -144,7 +144,7 @@ export class ProductsPage implements OnInit {
     let q = 'products?include=' + this.listOfFilteredIdsFromCustom + "&status=publish";
 
     //console.log(this.listOfFilteredIdsFromCustom);
-    if (this.sortOrder == "Newest") q = q + "&order=desc&order_by=date";
+    if (this.sortOrder == "Plus récent") q = q + "&order=desc&order_by=date";
     else if (this.sortOrder == "A - Z") q = q + "&order=asc&order_by=title";
     else if (this.sortOrder == "Z - A") q = q + "&order=desc&order_by=title";
 
@@ -195,7 +195,7 @@ export class ProductsPage implements OnInit {
     this.applyFilter = false;
     this.filterFeatured = false;
     this.type = "latest";
-    this.sortOrder = "Newest"
+    this.sortOrder = "Plus récent"
     this.filterOnSale = false;
     this.page = 1;
     this.selectedAttributes = [];
@@ -303,7 +303,7 @@ export class ProductsPage implements OnInit {
 
     query = query + this.queryAttributes;
     query = query + "&min_price=" + this.price.lower + "&max_price=" + this.price.upper;
-    this.config.getWithUrl(this.config.url + '/api/appsettings/ionic_get_attributes/?insecure=cool' + query).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appsettings/ionic_get_attributes/?insecure=cool' + query).then((data: any) => {
       if (data.attributes) {
         this.attributes = data.attributes;
       }

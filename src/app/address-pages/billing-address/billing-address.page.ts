@@ -24,7 +24,7 @@ export class BillingAddressPage implements OnInit {
   ) {
     if (this.shared.customerData.id != null) {
       this.shared.billing = this.shared.customerData.billing;
-      this.shared.billing.email = this.shared.customerData.email;
+      this.shared.billing.email = this.shared.customerData.email;  
       this.shared.billingCountryName = this.location.getCountryName(this.shared.customerData.billing.country);
       this.shared.billingStateName = this.location.getStateName(this.shared.customerData.billing.country, this.shared.customerData.billing.state);
     }
@@ -37,18 +37,18 @@ export class BillingAddressPage implements OnInit {
     this.shared.sameAddress = this.defaultAddress;
     console.log(this.defaultAddress);
     if (this.defaultAddress == true) {
-      console.log(" billing ==shipping");
+      console.log("billing ==shipping");
       this.shared.billing.first_name = this.shared.shipping.first_name;
       this.shared.billing.last_name = this.shared.shipping.last_name;
-      this.shared.billing.state = this.shared.shipping.state;
-      this.shared.billing.postcode = this.shared.shipping.postcode;
+     // this.shared.billing.state = '';
+     // this.shared.billing.postcode = '';
       this.shared.billing.country = this.shared.shipping.country;
-      this.shared.billing.address_1 = this.shared.shipping.address_1;
-      this.shared.billing.address_2 = this.shared.shipping.address_2;
+     // this.shared.billing.address_1 = '';
+    //  this.shared.billing.address_2 = '';
       this.shared.billing.city = this.shared.shipping.city;
-      this.shared.billing.company = this.shared.shipping.company;
+    //  this.shared.billing.company = '';
       this.shared.billingCountryName = this.shared.shippingCountryName;
-      this.shared.billingStateName = this.shared.shippingStateName;
+     // this.shared.billingStateName = "";
     }
     else {
       if (this.shared.customerData.id != null) {
@@ -62,15 +62,16 @@ export class BillingAddressPage implements OnInit {
         console.log("changing customer data to null for guest");
         this.shared.billing.first_name = '';
         this.shared.billing.last_name = '';
-        this.shared.billing.state = '';
-        this.shared.billing.postcode = '';
+       // this.shared.billing.state = '';
+       // this.shared.billing.postcode = '';
         this.shared.billing.country = '';
-        this.shared.billing.address_1 = '';
-        this.shared.billing.address_2 = '';
+       // this.shared.billing.address_1 = '';
+       // this.shared.billing.address_2 = '';
         this.shared.billing.city = '';
-        this.shared.billing.company = '';
+        this.shared.billing.email = '';
+       // this.shared.billing.company = '';
         this.shared.billingCountryName = "";
-        this.shared.billingStateName = "";
+      //  this.shared.billingStateName = "";
       }
     }
     this.applicationRef.tick();
@@ -100,16 +101,9 @@ export class BillingAddressPage implements OnInit {
       this.shared.billing.first_name == ""
       || this.shared.billing.last_name == ""
       || this.shared.billing.city == ""
-      || this.shared.billing.postcode == ""
-      || this.shared.billing.state == ""
       || this.shared.billing.country == ""
-      || this.shared.billing.address_1 == ""
       || this.shared.billing.phone == ""
       || this.shared.billing.email == ""
-      || this.shared.billing.state == null
-      || this.shared.billing.city == null
-      || this.shared.billing.postcode == null
-      || this.shared.billing.phone == null
     ) {
       return true;
     }

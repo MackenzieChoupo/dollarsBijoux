@@ -39,7 +39,7 @@ export class SignUpPage implements OnInit {
   }
   createAccount() {
     this.loading.show();
-    this.http.get(this.config.url + '/api/get_nonce/?controller=appusers&method=register').subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/get_nonce/?controller=appusers&method=register').subscribe((data: any) => {
       this.signUp(data.nonce);
     });
   }
@@ -54,10 +54,10 @@ export class SignUpPage implements OnInit {
     formData.append("password", this.formData.password);
     formData.append("first_name", this.formData.first_name);
     formData.append("last_name", this.formData.last_name);
-    this.http.post(this.config.url + '/api/appusers/register/?insecure=cool', formData).subscribe((data: any) => {
+    this.http.post(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/register/?insecure=cool', formData).subscribe((data: any) => {
       this.loading.hide();
       if (data.status == "ok") {
-        this.shared.toast("User Created. Login Using your Username & Password");
+        this.shared.toast("l'utilisateur a été crée avec succèss. Connectez-vous en utilisant votre nom d'utilisateur et votre mot de passe");
         this.dismiss();
       }
       else {

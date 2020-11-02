@@ -40,7 +40,7 @@ export class ContactUsPage implements OnInit {
     this.loading.autoHide(2000);
     var data = {};
     data = this.contact;
-    this.http.get(this.config.url + '/api/appusers/send_mail/?insecure=cool&email=' + this.contact.email + '&name=' + this.contact.name + '&message=' + this.contact.message).subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/send_mail/?insecure=cool&email=' + this.contact.email + '&name=' + this.contact.name + '&message=' + this.contact.message).subscribe((data: any) => {
       console.log(data);
 
       this.contact.name = '';
@@ -63,7 +63,7 @@ export class ContactUsPage implements OnInit {
     const script = document.createElement('script');
 
     try {
-      script.src = "https://maps.googleapis.com/maps/api/js?key=" + myApiKey;
+      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ7D2-23Gk_uQ22v3LUJ8OiFBsVVMBcM0";
       script.async = true;
       script.defer = true;
       script.onload = function () {

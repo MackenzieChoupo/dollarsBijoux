@@ -296,13 +296,14 @@ export class ShippingMethodPage implements OnInit {
       platform: this.shared.device,
     };
     console.log(data);
-    this.shared.openCheckoutWebview(data);
+   // this.shared.openCheckoutWebview(data);
+   this.navCtrl.navigateForward("/order");
   }
   //=================================================================================================================================
   getProducts() {
     var data = [];
     for (let v of this.shared.cartProducts) {
-      var obj = { quantity: v.quantity, product_id: v.product_id, total: v.total.toString() };
+      var obj = { quantity: v.quantity, product_id: v.product_id, total: v.total.toString(), customer_note: v.customer_note };
       if (v.variation_id) Object.assign(obj, { variation_id: v.variation_id })
       //if (v.meta_data) Object.assign(obj, { meta_data: v.meta_data })
       data.push(obj);
@@ -332,12 +333,63 @@ export class ShippingMethodPage implements OnInit {
       billing: this.shared.billing,
       shipping: this.shared.shipping
     };
-    this.config.Woocommerce.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
-      let dat = data
-      this.shared.customerData.billing = dat.billing;
-      this.shared.customerData.shipping = dat.shipping;
-      this.storage.set('customerData', this.shared.customerData);
-    });
+
+    switch(ConfigService.countryCode){
+      case 'cm':{
+        this.config.WoocommerceCM.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
+          let dat = data
+          this.shared.customerData.billing = dat.billing;
+          this.shared.customerData.shipping = dat.shipping;
+          this.storage.set('customerData', this.shared.customerData);
+        });
+        break;
+      }
+      case 'gb':{    
+        this.config.WoocommerceGB.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
+        let dat = data
+        this.shared.customerData.billing = dat.billing;
+        this.shared.customerData.shipping = dat.shipping;
+        this.storage.set('customerData', this.shared.customerData);
+      });
+        break;
+      }
+      case 'ck':{
+        this.config.WoocommerceCK.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
+          let dat = data
+          this.shared.customerData.billing = dat.billing;
+          this.shared.customerData.shipping = dat.shipping;
+          this.storage.set('customerData', this.shared.customerData);
+        });
+        break;
+      }
+      case 'cb':{
+        this.config.WoocommerceCB.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
+          let dat = data
+          this.shared.customerData.billing = dat.billing;
+          this.shared.customerData.shipping = dat.shipping;
+          this.storage.set('customerData', this.shared.customerData);
+        });
+        break;
+      }
+      case 'iv':{
+        this.config.WoocommerceCI.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
+          let dat = data
+          this.shared.customerData.billing = dat.billing;
+          this.shared.customerData.shipping = dat.shipping;
+          this.storage.set('customerData', this.shared.customerData);
+        });  break;
+      }
+      default: {
+        this.config.WoocommerceCM.putAsync("customers/" + this.shared.customerData.id, data).then((data: any) => {
+          let dat = data
+          this.shared.customerData.billing = dat.billing;
+          this.shared.customerData.shipping = dat.shipping;
+          this.storage.set('customerData', this.shared.customerData);
+        });        break;
+      }
+    }
+
+
   }
   public resetPage = false;
   //=================================================================================================================================

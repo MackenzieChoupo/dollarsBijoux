@@ -1,4 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-no-padding">{{"Selectionner votre pays"}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="country" allow-empty-selection="true" (ionChange)="countryHandler($event)" (ionSelect)="goCountry($event)">   
+      <ion-item *ngFor="let v of countryList">
+        <ion-label>{{v.name}}</ion-label>
+        <ion-img src="{{v.flag}}" slot="start"></ion-img>
+        <ion-radio slot="start" [value]="v.code" ></ion-radio>
+      </ion-item>
+      </ion-radio-group>
+  </ion-list>
+  
+</ion-content>
+
+
+  <!--
   <ion-slides pager="true" #IonSlides loop="true" class="ion-no-padding">
     <ion-slide #IonSlides *ngFor="let slide of slides; let i=index" class="ion-no-padding">
       <span class="ion-no-padding">
@@ -18,7 +43,7 @@
         </ion-row>
         <ion-row>
           <ion-button *ngIf="slides.length!=i+1" routerLink="/home" routerDirection="forward" fill="outline">
-            {{ 'Skip' | translate }}
+            {{ 'Suivant' | translate }}
           </ion-button>
           <ion-button *ngIf="slides.length==i+1" routerLink="/home" routerDirection="forward" fill="outline">
             {{ 'Fini' | translate }}
@@ -26,5 +51,5 @@
         </ion-row>
       </span>
     </ion-slide>
-  </ion-slides>
-</ion-content>
+  </ion-slides>-->
+  

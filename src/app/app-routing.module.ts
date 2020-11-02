@@ -13,6 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'about-us', loadChildren: './about-us/about-us.module#AboutUsPageModule' },
+  { path: 'openThankYouPage', loadChildren: './thank-you/thank-you.module#ThankYouPageModule'},
   { path: 'add-review/:id', loadChildren: './add-review/add-review.module#AddReviewPageModule' },
   { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
   { path: 'contact-us', loadChildren: './contact-us/contact-us.module#ContactUsPageModule' },
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'home9', loadChildren: './home-pages/home9/home9.module#Home9PageModule' },
   { path: 'home10', loadChildren: './home-pages/home10/home10.module#Home10PageModule' },
   { path: 'my-order-detail', loadChildren: './my-order-detail/my-order-detail.module#MyOrderDetailPageModule' },
+  { path: 'fail', loadChildren: './fail/fail.module#FailPageModule' },
   
 
   // { path: 'scratch-card', loadChildren: './scratch-card/scratch-card.module#ScratchCardPageModule' },

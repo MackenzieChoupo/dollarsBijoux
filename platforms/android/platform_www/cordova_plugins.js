@@ -413,6 +413,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "5.4.7",
     "ionic-plugin-deeplinks": "1.0.20",
-    "onesignal-cordova-plugin": "2.6.0"
+    "onesignal-cordova-plugin": "2.11.0"
   };
 });

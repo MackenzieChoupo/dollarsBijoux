@@ -65,6 +65,7 @@ export class Home7Page implements OnInit {
       if (dat.length != 0) {
         this.page++;
         for (let value of dat) {
+          //console.log(value);
           this.products.push(value);
         }
       }

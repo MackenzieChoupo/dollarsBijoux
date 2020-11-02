@@ -23,6 +23,7 @@ export class Categories3Page implements OnInit {
   ngOnInit() {
     this.parent = this.activatedRoute.snapshot.paramMap.get('parent');
     this.name = this.activatedRoute.snapshot.paramMap.get('name');
+    SharedDataService.categoryId = parseInt(this.parent);
     console.log(this.parent);
     console.log(this.name);
   }

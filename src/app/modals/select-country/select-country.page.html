@@ -5,11 +5,11 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{'Select Country'|translate}}</ion-title>
+    <ion-title style="font-size: 15px;">Selectionnez votre pays</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{'Search'|translate}}" #Searchbar></ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Rechercher" #Searchbar></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="selectCountry(item)">
       {{ item.name }}

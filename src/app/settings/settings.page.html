@@ -40,8 +40,8 @@
     </ion-row>
     <ion-row *ngIf="shared.customerData.id==null" (click)="openLoginPage()">
       <ion-col size="12" class="ion-no-padding">
-        <h2>{{ 'Se connecter et Crée un compte' | translate }}</h2>
-        <p>{{ 'Veuillez vous connecter ou créer un compte gratuitement' | translate }}</p>
+        <h2 style="font-size: 15px;">{{ 'Connectez-vous ou Créer un compte'}}</h2>
+       <!-- <p style="font-size: 15px;">{{ 'Veuillez vous connecter ou créer un compte gratuitement'}}</p>-->
       </ion-col>
     </ion-row>
     <ion-row *ngIf="shared.customerData.id!=null">
@@ -86,12 +86,12 @@
       </ion-label>
       <ion-icon slot="end" name="arrow-forward"></ion-icon>
     </ion-item>
-    <ion-item lines="full" (click)="rateUs()">
+   <!-- <ion-item lines="full" (click)="rateUs()">
       <ion-label>
         <p>{{"Évaluez nous"|translate}}</p>
       </ion-label>
       <ion-icon slot="end" name="star-half"></ion-icon>
-    </ion-item>
+    </ion-item>-->
     <ion-item lines="full" (click)="share()">
       <ion-label>
         <p>{{"Partager"|translate}}</p>

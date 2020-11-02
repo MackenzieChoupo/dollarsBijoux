@@ -26,7 +26,7 @@ export class ForgotPasswordPage implements OnInit {
   forgetPassword() {
     this.loading.show();
     this.errorMessage = '';
-    this.http.get(this.config.url + '/api/appusers/forgot_password/?insecure=cool&email=' + this.formData.customers_email_address).subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/forgot_password/?insecure=cool&email=' + this.formData.customers_email_address).subscribe((data: any) => {
       this.loading.hide();
       console.log(data);
       this.shared.showAlert(data);

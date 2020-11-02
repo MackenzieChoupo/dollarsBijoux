@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+    <string name="fb_app_id">712708999584993</string>
+    <string name="fb_app_name">DollarsBijoux</string>
     <bool name="fb_hybrid_app_events">false</bool>
-    <string name="fb_app_id">343705806319721</string>
-    <string name="fb_app_name">TC Shop</string>
 </resources>

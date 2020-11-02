@@ -50,15 +50,30 @@ export class CartPage implements OnInit {
   //============================================================================================  
   getSingleProductDetail(id) {
     this.loading.show();
-    this.config.getWoo("products/" + id + "?" + this.config.productsArguments).then((data: any) => {
+    //Ajout du 1 novembre 2020
+    
+    this.products = this.shared.cartProducts;
+    this.products.forEach(product => 
+      {
+        if(product.id == id)
+        {
+          this.loading.hide();
+          this.navCtrl.navigateForward("product-detail/" + id);  
+        };
+      });
+      //Fin Ajoute du 1 novembre 2020    
+    
+      /*this.config.getWoo("products/" + id + "?" + this.config.productsArguments).then((data: any) => {
       this.loading.hide();
       let p = data[0];
       this.shared.singleProductPageData.push(p);
-      this.navCtrl.navigateForward("product-detail/" + p.id);
+      console.log('Produit '+p);
+ 
+      this.navCtrl.navigateForward("product-detail/" + id);
     }, err => {
       this.loading.hide();
       console.log(err);
-    });
+    });*/
   }
   //============================================================================================  
   removeCart(id) {
@@ -110,11 +125,17 @@ export class CartPage implements OnInit {
       await modal.present();
     }
     else {
-      // <!-- 2.0 updates -->
-      if (this.config.checkOutPage == 1)
-        this.shared.onePageCheckOut();
-      else
+      // <!-- 2.0 updates -->  
+      if (this.config.checkOutPage == 1){
+         console.log('naviguer a la page onapagecheckout');
+        //this.shared.onePageCheckOut();
         this.navCtrl.navigateForward("/shipping-address");
+      }
+      else {
+        this.navCtrl.navigateForward("/shipping-address");
+        console.log('naviguer a la page coordonnes');
+      }
+       
     }
   }
   //============================================================================================  
@@ -128,7 +149,7 @@ export class CartPage implements OnInit {
   }
   //============================================================================================  
   updateCart() {
-
+    console.log('Updates');
     if (this.shared.cartProducts.length != 0) { this.loading.show(); this.loadingServerData = false; }
     let count = 0;
     this.shared.cartProducts.forEach((value, index) => {
@@ -191,7 +212,7 @@ export class CartPage implements OnInit {
       let d = data
       let coupon = d[0];
       if (d.length == 0)
-        this.shared.showAlert("Invalid Coupon Code!");
+        this.shared.showAlert("Code promo invalide!");
       else
         this.applyCouponCart(coupon);
 

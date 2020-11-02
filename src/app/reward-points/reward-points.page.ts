@@ -24,7 +24,7 @@ export class RewardPointsPage implements OnInit {
   getRewards() {
     this.httpLoading = true;
     this.loading.show();
-    this.http.get(this.config.url + '/api/appusers/ionic_reward_points/?insecure=cool&user_id=' + this.shared.customerData.id).subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/ionic_reward_points/?insecure=cool&user_id=' + this.shared.customerData.id).subscribe((data: any) => {
       this.httpLoading = false;
       this.loading.hide();
       let dat = data.data;

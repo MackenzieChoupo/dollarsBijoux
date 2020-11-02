@@ -48,7 +48,7 @@ export class NewsListPage implements OnInit {
   //getting list of posts
   getPosts() {
     if (this.page == 1) { this.loading.show(); this.loadingServerData = false; }
-    this.config.getWithUrl(this.config.url + '/wp-json/wp/v2/posts/?page=' + this.page + "&categories=" + this.id + "&" + this.config.productsArguments).then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + '/wp-json/wp/v2/posts/?page=' + this.page + "&categories=" + this.id + "&" + this.config.productsArguments).then((data: any) => {
 
       this.infinite.complete();//stopping infinite scroll loader
       if (this.page == 1) {

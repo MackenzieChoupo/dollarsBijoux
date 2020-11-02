@@ -39,7 +39,7 @@ export class NotificationsPage implements OnInit {
   getNotifications() {
     this.httpRunning = true;
     this.loading.show();
-    this.http.get(this.config.url + '/api/appusers/ionic_coupon_notification/?insecure=cool&user_id=' + this.shared.customerData.id).subscribe((data: any) => {
+    this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/ionic_coupon_notification/?insecure=cool&user_id=' + this.shared.customerData.id).subscribe((data: any) => {
       this.httpRunning = false;
       this.loading.hide();
       let dat = data.data;
@@ -85,7 +85,7 @@ export class NotificationsPage implements OnInit {
       if (v.id == data.id) {
         v.is_view = 1;
         this.shared.toast("Congratulations you Get " + v.message + " use this code : " + v.code);
-        this.http.get(this.config.url + '/api/appusers/ionic_notification_update/?insecure=cool&notification_id=' + v.id).subscribe((data: any) => {
+        this.http.get(this.config.getCountryParams(ConfigService.countryCode)[0] + '/api/appusers/ionic_notification_update/?insecure=cool&notification_id=' + v.id).subscribe((data: any) => {
           //this.loading.hide();
           let dat = data.data;
           console.log(data);

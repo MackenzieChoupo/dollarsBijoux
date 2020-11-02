@@ -51,7 +51,7 @@ export class BannerComponent implements OnInit {
       this.shared.addToRecent(data);
     }, err => {
       this.loading.hide();
-      this.shared.showAlert("Item not Available!");
+      this.shared.showAlert("Element non disponible!");
       console.log(err);
     });
   }

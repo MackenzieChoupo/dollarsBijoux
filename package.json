@@ -31,7 +31,7 @@
     "@ionic-native/in-app-browser": "^5.21.6",
     "@ionic-native/native-geocoder": "^5.21.6",
     "@ionic-native/network": "^5.21.6",
-    "@ionic-native/onesignal": "^5.21.6",
+    "@ionic-native/onesignal": "^5.28.0",
     "@ionic-native/social-sharing": "^5.21.6",
     "@ionic-native/spinner-dialog": "^5.21.6",
     "@ionic-native/splash-screen": "^5.21.6",
@@ -39,6 +39,7 @@
     "@ionic-native/themeable-browser": "^5.21.6",
     "@ionic/angular": "^4.11.10",
     "@ionic/storage": "^2.2.0",
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "cordova-android": "8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-add-swift-support": "^2.0.2",
@@ -64,9 +65,10 @@
     "es6-promise-plugin": "^4.2.2",
     "ionic-plugin-deeplinks": "^1.0.20",
     "jquery": "^3.4.1",
-    "onesignal-cordova-plugin": "^2.8.4",
+    "onesignal-cordova-plugin": "^2.11.0",
     "rxjs": "^6.5.4",
     "tslib": "^1.11.1",
+    "woocommerce-api": "^1.5.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -81,7 +83,7 @@
     "@ionic/angular-toolkit": "~2.0.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "^2.0.8",
-    "@types/node": "~8.9.4",
+    "@types/node": "^8.9.5",
     "codelyzer": "^5.2.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -127,7 +129,7 @@
       "ionic-plugin-deeplinks": {
         "URL_SCHEME": "shop",
         "DEEPLINK_SCHEME": "http",
-        "DEEPLINK_HOST": "tcshop.ionicecommerce.com",
+        "DEEPLINK_HOST": "tcshop.dollarsbijoux.com",
         "ANDROID_PATH_PREFIX": "/",
         "ANDROID_2_PATH_PREFIX": "/",
         "ANDROID_3_PATH_PREFIX": "/",
@@ -143,7 +145,7 @@
         "DEEPLINK_5_HOST": " "
       },
       "cordova-plugin-facebook4": {
-        "APP_ID": "732330173917219",
+        "APP_ID": "712708999584993",
         "APP_NAME": "DollarsBijoux"
       },
       "onesignal-cordova-plugin": {}

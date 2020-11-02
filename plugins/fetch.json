@@ -170,7 +170,7 @@
     "variables": {
       "URL_SCHEME": "shop",
       "DEEPLINK_SCHEME": "http",
-      "DEEPLINK_HOST": "tcshop.ionicecommerce.com",
+      "DEEPLINK_HOST": "tcshop.dollarsbijoux.com",
       "ANDROID_PATH_PREFIX": "/",
       "ANDROID_2_PATH_PREFIX": "/",
       "ANDROID_3_PATH_PREFIX": "/",
@@ -193,7 +193,7 @@
     },
     "is_top_level": true,
     "variables": {
-      "APP_ID": "732330173917219",
+      "APP_ID": "712708999584993",
       "APP_NAME": "DollarsBijoux"
     }
   },

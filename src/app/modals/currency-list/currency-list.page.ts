@@ -26,7 +26,7 @@ export class CurrencyListPage implements OnInit {
   }
   getListOfCurrency() {
     this.loading.show();
-    this.config.getWithUrl(this.config.url + "/api/appsettings/get_all_currencies/?insecure=cool").then((data: any) => {
+    this.config.getWithUrl(this.config.getCountryParams(ConfigService.countryCode)[0] + "/api/appsettings/get_all_currencies/?insecure=cool").then((data: any) => {
       this.loading.hide();
       this.currencyList = data.data;
       this.currencyList.forEach(val => {
