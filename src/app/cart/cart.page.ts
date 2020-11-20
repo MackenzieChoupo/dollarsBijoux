@@ -52,7 +52,7 @@ export class CartPage implements OnInit {
     this.loading.show();
     //Ajout du 1 novembre 2020
     
-    this.products = this.shared.cartProducts;
+    /*this.products = this.shared.cartProducts;
     this.products.forEach(product => 
       {
         if(product.id == id)
@@ -60,11 +60,12 @@ export class CartPage implements OnInit {
           this.loading.hide();
           this.navCtrl.navigateForward("product-detail/" + id);  
         };
-      });
+      });*/
       //Fin Ajoute du 1 novembre 2020    
     
-      /*this.config.getWoo("products/" + id + "?" + this.config.productsArguments).then((data: any) => {
+      this.config.getWoo("products/" + id + "?" + this.config.productsArguments).then((data: any) => {
       this.loading.hide();
+      console.log('product '+data.toString())
       let p = data[0];
       this.shared.singleProductPageData.push(p);
       console.log('Produit '+p);
@@ -73,7 +74,7 @@ export class CartPage implements OnInit {
     }, err => {
       this.loading.hide();
       console.log(err);
-    });*/
+    });
   }
   //============================================================================================  
   removeCart(id) {

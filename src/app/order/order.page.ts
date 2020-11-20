@@ -59,9 +59,10 @@ export class OrderPage implements OnInit {
   public designation: any;
   public currency: string = 'CFA';
   public amount: any;
-
+  public static nave : any;
   constructor(
     public navCtrl: NavController,
+    
    // public WooCommerce: WooCommerceRestApi,
     public http: HttpClient,
     public config: ConfigService,
@@ -86,6 +87,7 @@ export class OrderPage implements OnInit {
       //customer_note: this.customerNotes,
       customer_id: this.shared.customerData.id,
     };
+    OrderPage.nave = this.navCtrl;
     //this.productsTotal = this.shared.productsTotal();
     this.calculateDiscount();
     this.calculateTotal();
@@ -203,10 +205,13 @@ export class OrderPage implements OnInit {
             CinetPay.on('paymentPending', function (e) {
                 console.log('code:' + e.code + 'Message::' + e.message);
                 //this.navCtrl.navigateForward("fail");
+                OrderPage.nave.navigateForward("fail");
+
             });
             CinetPay.on('error', function (e) {
                 console.log('Error code:' + e.code + 'Message::' + e.message);
-               // this.navCtrl.navigateForward("fail");
+                //this.navCtrl.navigateForward("fail");
+                OrderPage.nave.navigateForward("fail");
             });
             CinetPay.on('paymentSuccessfull', function(paymentInfo) {
               console.log(paymentInfo)
@@ -610,12 +615,17 @@ export class OrderPage implements OnInit {
           });
           CinetPay.on('paymentPending', function (e) {
               console.log('code:' + e.code + 'Message::' + e.message);
+              OrderPage.nave.navigateForward("fail");
+              return;
               //this.navCtrl.navigateForward("fail");
           });
           CinetPay.on('error', function (e) {
               console.log('Error code:' + e.code + 'Message::' + e.message);
              // this.navCtrl.navigateForward("fail");
-             this.events.publish('fail');
+             //this.events.publish('fail');
+             
+             OrderPage.nave.navigateForward("fail");
+             return;
           });
           CinetPay.on('paymentSuccessfull', function(paymentInfo) {
             console.log(paymentInfo)

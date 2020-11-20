@@ -93,12 +93,14 @@ export class ProductDetailPage implements OnInit {
     this.enableDisbaleCartButton();
   }
   getProductData(id) {
+    
     let p;
     this.shared.singleProductPageData.forEach(element => {
       if (element.id == id) {
         p = element;
       }
     });
+    console.log('product id '+p)
     return p;
   }
   ngOnInit() {
